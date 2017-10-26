@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,22 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
+            Student_List students = new Student_List();
+            students.ConsolWork();
+
+            string myApp = "ConsolApp";
+            if (!EventLog.SourceExists(myApp))
+                EventLog.CreateEventSource(myApp, "Application");
+            EventLog.WriteEntry(myApp,"Application was started");
+
+          }
+    }
+    
+
+   public class Student_List
+    {     
+        public void ConsolWork()
+        {
             Student_List list = new Student_List();
             List<string> ListOfStudents = new List<string>();
             int id = 1;
@@ -17,10 +34,10 @@ namespace ConsoleApp
             Console.Write("Please enter the name and age of student. If you finich press 'End'");
             Console.WriteLine();
             while (Console.ReadKey().Key != ConsoleKey.End)
-            { 
+            {
                 string line_st = Console.ReadLine();
                 Console.WriteLine();
-                ListOfStudents.Add(id+" "+line_st);
+                ListOfStudents.Add(id + " " + line_st);
                 id++;
             }
 
@@ -46,8 +63,8 @@ namespace ConsoleApp
                     Console.WriteLine("enter the number");
                     string number = Console.ReadLine();
                     ListOfStudents.RemoveAt(Int32.Parse(number) - 1);
-              
-                   
+
+
                 }
             }
 
@@ -56,11 +73,7 @@ namespace ConsoleApp
             foreach (var st in ListOfStudents)
                 Console.WriteLine(st);
         }
-    }
-    
 
-   public class Student_List
-    {     
         public List<object> CreateListofStudents()
         {
 
@@ -88,16 +101,5 @@ namespace ConsoleApp
             return students;
         }
 
-        public void Show(List<object> List)
-        {
-          
-                foreach(var st in List)
-                {
-                    Console.WriteLine(st);
-                }
-            
-
-        }
-        
     }
 }
