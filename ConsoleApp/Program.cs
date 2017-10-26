@@ -11,8 +11,9 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Student_List students = new Student_List();
-            students.ConsolWork();
+
+            ListStudents students = new ListStudents()             ;
+           
 
             string myApp = "ConsolApp";
             if (!EventLog.SourceExists(myApp))
@@ -74,32 +75,58 @@ namespace ConsoleApp
                 Console.WriteLine(st);
         }
 
-        public List<object> CreateListofStudents()
-        {
 
-            var firstStudent = CreateList("Григорий Васичкин", 21, "Student");
-            var secondStudent = CreateList("Василий Пупкин", 23, "Student");
-            var thirdStudent = CreateList("Гальна Огнева", 19, "Student");
-            List<object> finishList = new List<object>();
-            finishList.Add(firstStudent);
-            finishList.Add(secondStudent);
-            finishList.Add(thirdStudent);
-            return finishList;
+
+
+        private List<List<string>> CreateListofStudents()
+        {
+            List<List<string>> List = new List<List<string>> ();
+            List.Add(new List<string> { "Григорий Васичкин", "21", "Student" });
+            List.Add(new List<string> { "Василий Пупкин", "23", "Student" });
+            List.Add(new List<string> { "Гальна Огнева", "19", "Student" });
+            return List;
 
         }
 
-        private List<List<object>> CreateList(object name,object age, object role)
+        public void Show()
         {
-            List<List<object>> students = new List<List<object>>();
-            List<object> student = new List<object>();
+            List<List<string>> ListOfStudents = CreateListofStudents();
 
-            student.Add(name);
-            student.Add(age);
-            student.Add(role);
-            students.Add(student);
-
-            return students;
+            foreach (List<string> subList in ListOfStudents)
+            {
+                foreach (string item in subList)
+                {
+                    Console.WriteLine(item);
+                }
+            }
         }
 
     }
+
+    public class Student
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Age { get; set; }
+        public string Role { get; set; }
+    }
+
+    public class ListStudents:List<Student>
+    {
+        Student student = new Student();
+        
+       public ListStudents(string name, int age, string role)
+        {
+            student.ID= GetNextId(student.ID);
+            student.Name = name;
+            student.Age = age;
+            student.Role = role;
+        }
+
+        protected int GetNextId(int id)
+        {
+            return ++id;
+        }
+    }
+
 }
