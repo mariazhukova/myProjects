@@ -6,20 +6,20 @@
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid Background="#FFF1ECEC">
-        <Label Content="First Name&#xD;&#xA;" HorizontalAlignment="Left" Margin="71,74,0,0" VerticalAlignment="Top" Height="27" Width="72" RenderTransformOrigin="0.5,0.5"/>
-        <Label Content="Last Name" HorizontalAlignment="Left" Margin="71,119,0,0" VerticalAlignment="Top" Height="27" Width="72" RenderTransformOrigin="0.5,0.5"/>
-        <Label Content="Password&#xD;&#xA;" HorizontalAlignment="Left" Margin="71,166,0,0" VerticalAlignment="Top" Height="26" Width="72" RenderTransformOrigin="0.512,0.067"/>
-        <Label Content="Email" HorizontalAlignment="Left" Margin="71,212,0,0" VerticalAlignment="Top" Height="27" Width="72" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="TBFirstName" HorizontalAlignment="Left" Height="24" Margin="251,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="TBLastName" HorizontalAlignment="Left" Height="24" Margin="251,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="TBPassword" HorizontalAlignment="Left" Height="23" Margin="251,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.5,0.5"/>
-        <TextBox x:Name="TBEmail" HorizontalAlignment="Left" Height="24" Margin="251,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" RenderTransformOrigin="0.5,0.5"/>
-        <Label x:Name="LLogin" Content="Login&#xD;&#xA;" HorizontalAlignment="Left" Margin="453,0,0,0" VerticalAlignment="Top" Width="55" FontWeight="Bold" TextOptions.TextFormattingMode="Display"/>
-        <Button x:Name="BSubmit" Content="Submit" HorizontalAlignment="Left" Margin="108,273,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BReset" Content="Reset" HorizontalAlignment="Left" Margin="203,273,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button x:Name="BCansel" Content="Cansel" HorizontalAlignment="Left" Margin="295,273,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Registration" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" TextOptions.TextFormattingMode="Display" TextOptions.TextHintingMode="Animated" FontSize="18"/>
+    <Grid>
+        <Button x:Name="BSubmit" Content="Submit" HorizontalAlignment="Left" Margin="177,281,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+        <Button x:Name="BReset" Content="Reset" HorizontalAlignment="Left" Margin="296,281,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="BCancel" Content="Cancel" HorizontalAlignment="Left" Margin="422,281,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="158,73,0,0" VerticalAlignment="Top"/>
+        <Label Content="eMail" HorizontalAlignment="Left" Margin="158,119,0,0" VerticalAlignment="Top"/>
+        <Label Content="Password" HorizontalAlignment="Left" Margin="158,164,0,0" VerticalAlignment="Top"/>
+        <Label Content="Confirm password" HorizontalAlignment="Left" Margin="158,208,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Height="23" Margin="296,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="eMail" HorizontalAlignment="Left" Height="23" Margin="296,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Password" HorizontalAlignment="Left" Height="23" Margin="296,164,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="Confirm_password" HorizontalAlignment="Left" Height="23" Margin="296,208,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="Login" Content="Login" HorizontalAlignment="Left" Margin="447,10,0,0" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Sitka Text" FontSize="18"/>
+        <Label Content="Autorisation&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
