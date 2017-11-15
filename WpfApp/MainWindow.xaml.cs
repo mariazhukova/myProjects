@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace WpfApp
 {
@@ -67,7 +68,10 @@ namespace WpfApp
 
                 if (error == 0)
                 {
-                    SqlConnection conect = new SqlConnection("Data Source = MARIAZHUKOVA; Initial Catalog = ForWPFapp; Integrated Security = True");
+                  
+                    string ConnectionString = @"Data Source = MARIAZHUKOVA\SQLEXPRESS; Initial Catalog = ForWPFapp; Integrated Security = True";
+                    SqlConnection conect = new SqlConnection(ConnectionString);
+                   
                     conect.Open();
                     SqlCommand cmd = new SqlCommand("insert into dbo.UsersData(UserName,eMail,Password)values('" + name + "','" + email + "','" + password + "')", conect);
                     cmd.CommandType = CommandType.Text;
