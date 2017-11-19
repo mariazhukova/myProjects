@@ -1,0 +1,89 @@
+﻿@model MVC.Models.LessonItemViewModel
+
+@{
+    ViewBag.Title = "Lesson";
+    string view_type = ViewBag.ViewType;
+}
+
+<h2>Lesson</h2>
+@if (view_type != "View")
+{
+    using (Html.BeginForm(view_type, "Lesson", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>view_type</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ID)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Group, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Group, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Group, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Room, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Room, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Room, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Trainer, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Trainer, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Trainer, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HomeWork, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.HomeWork, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.HomeWork, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+}
+else
+{
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Group)</dt>
+        <dd>@Html.DisplayFor(model => model.Group)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Room)</dt>
+        <dd>@Html.DisplayFor(model => model.Room)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Trainer)</dt>
+        <dd>@Html.DisplayFor(model => model.Trainer)</dd>
+        <dt>@Html.DisplayNameFor(model => model.HomeWork)</dt>
+        <dd>@Html.DisplayFor(model => model.HomeWork)</dd>
+        <dt>@Html.DisplayNameFor(model => model.DateTime)</dt>
+        <dd>@Html.DisplayFor(model => model.DateTime)</dd>
+    </dl>
+}
+<div>
+  
+   
+</div>
+

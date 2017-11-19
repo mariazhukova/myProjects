@@ -1,0 +1,35 @@
+﻿@model IEnumerable<MVC.Models.LessonItemViewModel>
+
+@{
+    ViewBag.Title = "Scheduler";
+}
+
+<h2>Scheduler</h2>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Group) </th>
+        <th>@Html.DisplayNameFor(model => model.Room)</th>
+        <th>@Html.DisplayNameFor(model => model.Trainer)</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.Group)</td>
+        <td>@Html.DisplayFor(modelItem => item.Room) </td>
+        <td>@Html.DisplayFor(modelItem => item.Trainer) </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+        </td>
+    </tr>
+}</table>
+<div>@Html.ActionLink("Create", "Create") </div>
+
+<hr>
+<div>
+    <a href="~/Views/Home/Index.cshtml">To home page</a>
+</div>
