@@ -15,7 +15,7 @@ namespace MVC.Models
         [Description("Название Группы")]
         [Required(AllowEmptyStrings =false,ErrorMessage ="Указание группы обязательно")]
         public string Group { get; set; }
-
+        
         [Description("Номер комнаты")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Указание комнаты обязательно")]
         public string Room { get; set; }

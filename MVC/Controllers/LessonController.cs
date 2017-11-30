@@ -109,7 +109,7 @@ namespace MVC.Controllers
             var lesson = lessons.FirstOrDefault(l => l.ID == id);
             if (lesson == null)
                 return RedirectToAction("Index");
-            lessons.RemoveAt(id);
+            lessons.Remove(lesson);
             return View("Index",lessons);
         }
 
