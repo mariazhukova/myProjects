@@ -1,33 +1,36 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Specialized;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Collections
 {
     class Program
     {
-        
         static void Main(string[] args)
         {
-            ArrayList users = new ArrayList();
-            string user = null;
-          
-            do
+            var listEmployee = new List<Tuple<int, string, string>>
+
+           {
+
+               Tuple.Create(1, "Joydip Kanjilal", "INDIA"),
+
+               Tuple.Create(2, "Michael Stevens", "USA" ),
+
+               Tuple.Create(3, "Steve Barnes", "USA" )
+
+           };
+
+            foreach (Tuple<int, string, string> tuple in listEmployee)
+
             {
-                Console.WriteLine("Enter the users:");
-                user = Console.ReadLine();
-                users.Add(user.Trim());
+
+                Console.WriteLine(tuple.Item2);
 
             }
-            while (!string.IsNullOrEmpty(user));
 
-            foreach (string u in users)
-                Console.WriteLine(u);
+            Console.Read();
         }
-
-
     }
-
-
-
 }

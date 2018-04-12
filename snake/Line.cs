@@ -10,32 +10,25 @@ namespace snake
     {
         protected List<Point> pList;
 
-        public Line(int lenght,Point point,string marker)
+        public Line(int lenght,Point point)
         {
             pList = new List<Point>();
-            switch (marker)
+                   
+        }
+        public virtual void Draw(List<Point> list)
+        {
+            foreach (Point p in list)
             {
-                case "v":
-                    for (int i = point.x; i < lenght; i++)
-                    {
-                        Point newpoint = new Point(i, point.y);
-                        pList.Add(newpoint);
-                    }
-                    break;
-                    
-                case "h":
-                    for (int i = point.y; i < lenght; i++)
-                    {
-                        Point newpoint = new Point(point.x, i);
-                        pList.Add(newpoint);
-                    }
-                    break;
+                Console.SetCursorPosition(p.x, p.y);
+                Console.Write(p.simb);
             }
-         
-            foreach (Point p in pList)
-            {
-                p.Draw();
-            }
+           
+        }
+        public bool IsCross(Snake snake)
+        {
+            if (snake.IsCross(pList))
+                return true;
+            return false;
         }
 
     }

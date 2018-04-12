@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5F4786C-6DCF-42FF-AFE6-51D51263053A}</ProjectGuid>
+    <ProjectGuid>{C1B6F386-6D0B-4F55-9150-2700E8CFE073}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Collections</RootNamespace>
-    <AssemblyName>Collections</AssemblyName>
+    <RootNamespace>snake</RootNamespace>
+    <AssemblyName>snake</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,9 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NewCollections.cs" />
+    <Compile Include="Direction.cs" />
+    <Compile Include="Food.cs" />
+    <Compile Include="HorisontalLine.cs" />
+    <Compile Include="Line.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Point.cs" />
+    <Compile Include="Snake.cs" />
+    <Compile Include="VertikalLine.cs" />
+    <Compile Include="Walls.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

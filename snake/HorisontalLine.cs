@@ -6,24 +6,28 @@ using System.Threading.Tasks;
 
 namespace snake
 {
-    class HorisontalLine
+    class HorisontalLine:Line
     {
-        List<Point> pList;
-
-        public HorisontalLine(int lenght,Point point)
+       
+         public HorisontalLine(int lenght, Point point) : base(lenght, point)
         {
-            pList = new List<Point>();
-            for(int i=point.x;i<lenght;i++)
+            for (int i = point.y; i < lenght; i++)
             {
-                Point newpoint = new Point(i,point.y);
-                pList.Add(newpoint); 
+                Point newpoint = new Point(point.x, i);
+                pList.Add(newpoint);
             }
-            foreach (Point p in pList)
+            Draw(pList);
+            
+        }
+
+        public override void Draw(List<Point> list)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            foreach (Point p in list)
             {
                 p.Draw();
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
-
-       
     }
 }

@@ -6,21 +6,26 @@ using System.Threading.Tasks;
 
 namespace snake
 {
-    class VertikalLine
+    class VertikalLine:Line
     {
-        List<Point> pList;
-        public VertikalLine(int lenght, Point point)
+        public VertikalLine(int lenght, Point point) : base(lenght, point)
         {
-            pList = new List<Point>();
-            for (int i = point.y; i < lenght; i++)
+            for (int i = point.x; i < lenght; i++)
             {
-                Point newpoint = new Point(point.x,i);
+                Point newpoint = new Point(i, point.y);
                 pList.Add(newpoint);
             }
-            foreach (Point p in pList)
+            Draw(pList);
+        }
+
+        public override void Draw(List<Point> list)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            foreach (Point p in list)
             {
                 p.Draw();
             }
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
