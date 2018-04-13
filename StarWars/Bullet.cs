@@ -14,6 +14,10 @@ namespace StarWars
        
         public override void Draw() => Game.buffer.Graphics.DrawRectangle(Pens.OrangeRed, pos.X, pos.Y, size.Width, size.Height);
         public override void Update() => pos.X = pos.X + 10;
-        public void Reset() => pos.X = 0;
+        public void Reset(int x,int y)
+        {
+            pos.X = x + 5;
+            pos.Y = y;
+        }
     }
 }

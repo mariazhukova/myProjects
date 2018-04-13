@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventsExample", "EventsExample\EventsExample.csproj", "{88482F75-1088-4859-983D-652E78187192}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAppNEW", "WpfApp\WpfAppNEW.csproj", "{50CD1E9B-65EB-471B-805E-69029B550BBB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC", "MVC\MVC.csproj", "{2CA72E8C-E110-4206-91E9-B9BCD685176E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeGame", "snake\SnakeGame.csproj", "{C1B6F386-6D0B-4F55-9150-2700E8CFE073}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collections", "Collections\Collections.csproj", "{D5F4786C-6DCF-42FF-AFE6-51D51263053A}"
@@ -22,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarWars", "StarWars\StarWars.csproj", "{C811BDE7-158E-44ED-BCD6-9039AF4DCD87}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegat", "Delegat\Delegat.csproj", "{92609CA2-8BC8-4717-A8BB-E968D60981EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lambda", "Lambda\Lambda.csproj", "{56F7F87A-D84B-4A64-B7CC-7EC66C649AA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,14 +39,6 @@ Global
 		{88482F75-1088-4859-983D-652E78187192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88482F75-1088-4859-983D-652E78187192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88482F75-1088-4859-983D-652E78187192}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50CD1E9B-65EB-471B-805E-69029B550BBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50CD1E9B-65EB-471B-805E-69029B550BBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50CD1E9B-65EB-471B-805E-69029B550BBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50CD1E9B-65EB-471B-805E-69029B550BBB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2CA72E8C-E110-4206-91E9-B9BCD685176E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CA72E8C-E110-4206-91E9-B9BCD685176E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CA72E8C-E110-4206-91E9-B9BCD685176E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CA72E8C-E110-4206-91E9-B9BCD685176E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1B6F386-6D0B-4F55-9150-2700E8CFE073}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1B6F386-6D0B-4F55-9150-2700E8CFE073}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1B6F386-6D0B-4F55-9150-2700E8CFE073}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +59,10 @@ Global
 		{92609CA2-8BC8-4717-A8BB-E968D60981EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92609CA2-8BC8-4717-A8BB-E968D60981EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92609CA2-8BC8-4717-A8BB-E968D60981EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56F7F87A-D84B-4A64-B7CC-7EC66C649AA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56F7F87A-D84B-4A64-B7CC-7EC66C649AA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56F7F87A-D84B-4A64-B7CC-7EC66C649AA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56F7F87A-D84B-4A64-B7CC-7EC66C649AA5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

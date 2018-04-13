@@ -16,7 +16,7 @@ namespace StarWars
         static List<MedicalKit> Mkits;
         static Image image = Image.FromFile("space.jpg");
         static Image gameover = Image.FromFile("gameover.jpg");
-        static Bullet bullet;
+        static List<Bullet> bullets=new List<Bullet>();
         static public Random rnd;
         static int score = 0;
         static int iteration = 0;
@@ -75,7 +75,7 @@ namespace StarWars
         }
         private static void Form_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey) bullet = new Bullet(new Point(ship.rectangle.X + 10, ship.rectangle.Y + 4), new Point(4, 0), new Size(4, 1));
+            if (e.KeyCode == Keys.ControlKey) bullets.Add( new Bullet(new Point(ship.rectangle.X + 10, ship.rectangle.Y + 4), new Point(4, 0), new Size(4, 1)));
             if (e.KeyCode == Keys.Up) ship.Up();
             if (e.KeyCode == Keys.Down) ship.Down();
             if (e.KeyCode == Keys.Left) ship.Left();
@@ -91,29 +91,34 @@ namespace StarWars
 
         static public void Update()
         {
-            for(int i=0;i< asteroids.Count;i++)
+            for (int iter = 0; iter < bullets.Count; iter++)
             {
-               if (asteroids[i]!=null)
+                for (int i = 0; i < asteroids.Count; i++)
                 {
-                    asteroids[i].Update();
-                    if(bullet!=null && bullet.Collision(asteroids[i]))
+                    if (asteroids[i] != null)
                     {
-                        System.Media.SystemSounds.Hand.Play();
-                        bullet = null;
-                        asteroids[i] = null;
-                        score += 10;
-                        log("Shot, plus 10 to score");
-                        continue;
-                    }
-                    if (ship.Collision(asteroids[i]))
-                    {
-                        if (ship.Energy < 10)
+                        asteroids[i].Update();
+                        if (bullets[iter] != null && bullets[iter].Collision(asteroids[i]))
                         {
-                            ship.Energy -= 10;
                             System.Media.SystemSounds.Hand.Play();
-                            log("Ship was injured");
+                            bullets.Remove(bullets[iter]);
+                            iter--;
+                            asteroids.Remove(asteroids[i]);
+                            i--;
+                            score += 10;
+                            log("Shot, plus 10 to score");
+                            continue;
                         }
-                        
+                        if (ship.Collision(asteroids[i]))
+                        {
+                            if (ship.Energy < 10)
+                            {
+                                ship.Energy -= 10;
+                                System.Media.SystemSounds.Hand.Play();
+                                log("Ship was injured");
+                            }
+
+                        }
                     }
                 }
             }
@@ -123,7 +128,8 @@ namespace StarWars
                 {
                     if(Mkits[it].Collision(ship))
                     {
-                        Mkits[it] = null;
+                        Mkits.Remove(Mkits[it]);
+                        it--;
                         ship.Energy += 10;
                         log("You have taken the medical kit,plus 10 to score");
                     }
@@ -136,18 +142,21 @@ namespace StarWars
         static public void Draw()
         {
             buffer.Graphics.DrawImage(image, new Point());
-            foreach (Asteroid obj in asteroids)
+            foreach (Bullet b in bullets)
             {
-                if (obj != null)
-                { 
-                    if (obj.Collision(bullet))
+                foreach (Asteroid obj in asteroids)
+                {
+                    if (obj != null)
                     {
-                        System.Media.SystemSounds.Hand.Play();
-                        score += 10;
-                        bullet.Reset();
+                        if (obj.Collision(b))
+                        {
+                            System.Media.SystemSounds.Hand.Play();
+                            score += 10;
+                            b.Reset(ship.rectangle.X, ship.rectangle.Y);
+                        }
                     }
+                    obj.Draw();
                 }
-                obj.Draw();
             }
             foreach(MedicalKit kit in Mkits)
             {
@@ -159,7 +168,7 @@ namespace StarWars
                     }
                 }
             }
-            if (bullet!=null) bullet.Draw();
+            //if (bullet!=null) bullet.Draw();
             buffer.Graphics.DrawString("Energy: {0}" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
             buffer.Render();
         }
@@ -172,7 +181,7 @@ namespace StarWars
             Mkits= new List<MedicalKit>(5);
             rnd = new Random();
 
-            bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
+            //bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
             log("All objects have been loaded");
                 
             for (int i = 0; i < asteroids.Count; i++)
