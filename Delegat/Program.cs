@@ -27,23 +27,27 @@ namespace Delegat
     }
     class Program
     {
-      //delegate can get the spetial type and return the spetial type
-        static int Compare(Student one,Student two)
-        {
-            return String.Compare(one.Name, two.Name);
-        }
-
+        //delegate can get the spetial type and return the spetial type
+        delegate int Compare(Student one, Student two);
+        
         static void Main(string[] args)
         {
             Student[] students =
                 { new Student("AAA", 26),
                   new Student("BBB", 18),
                   new Student("CCC", 20) };
-
-        //    Array.Sort(students, Compare);
+            Compare com = new Compare(Com);
+            //Array.Sort(students, com);
             Array.Sort(students);
+            TimerDelegate tim = new TimerDelegate();
+            tim.Timer();
+            GrnericDelegate genericDelegate = new GrnericDelegate();
+            genericDelegate.CreateGenericDelegate();
 
-
+        }
+        static int Com(Student one, Student two)
+        {
+            return String.Compare(one.Name, two.Name);
         }
     }
 }

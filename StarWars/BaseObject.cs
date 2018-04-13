@@ -9,6 +9,7 @@ namespace StarWars
 {
    abstract class BaseObject:ICollision
     {
+       public delegate void Message();
         protected Point pos;
         protected Point dir;
         protected Size size;
@@ -25,7 +26,9 @@ namespace StarWars
 
         public bool Collision(ICollision obj)
         {   
+            if (obj!=null)
             if (obj.rectangle.IntersectsWith(this.rectangle)) return true; else return false;
+            return false;
         }
 
         abstract public void Draw();

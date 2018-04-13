@@ -9,9 +9,11 @@ namespace StarWars
 {
     class Bullet:BaseObject
     {
-        public Bullet(Point pos,Point dir,Size size) : base(pos, dir, size) { }
+        Image image;
+        public Bullet(Point pos, Point dir, Size size) : base(pos, dir, size) => image = Image.FromFile("bullet.jpg");
        
         public override void Draw() => Game.buffer.Graphics.DrawRectangle(Pens.OrangeRed, pos.X, pos.Y, size.Width, size.Height);
-        public override void Update() => pos.X = pos.X + 3;
+        public override void Update() => pos.X = pos.X + 10;
+        public void Reset() => pos.X = 0;
     }
 }

@@ -24,11 +24,5 @@ namespace StarWars
             if (pos.X < 0) { pos.X = Game.Width + 20;pos.Y = Game.rnd.Next(0, Game.Height); }
         }
 
-        public void MoveAsteroid()
-        {
-            pos.X= Game.Width + 20;
-            pos.Y= Game.rnd.Next(0, Game.Height);
-        }
-
     }
 }
