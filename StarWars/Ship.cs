@@ -25,19 +25,24 @@ namespace StarWars
 
         public void Up()
         {
-            if (pos.Y < 0) pos.Y = pos.Y - dir.Y;
+            if (pos.Y < 0) pos.Y = pos.Y;
+            else pos.Y = pos.Y - dir.Y;
         }
         public void Down()
         {
-            if (pos.Y > Game.Height) pos.Y = pos.Y + dir.Y;
+            if (pos.Y > Game.Height) pos.Y = pos.Y;
+            else pos.Y = pos.Y + dir.Y;
+
         }
         public void Left()
         {
-            if (pos.X < 0) pos.X = pos.X - dir.X;
+            if (pos.X < 0) pos.X = pos.X;
+            else pos.X = pos.X - dir.X;
         }
         public void Right()
         {
-            if (pos.X > Game.Width) pos.X = pos.X + dir.X;
+            if (pos.X > Game.Width) pos.X = pos.X;
+            else pos.X = pos.X + dir.X;
         }
         public void Die()
         {

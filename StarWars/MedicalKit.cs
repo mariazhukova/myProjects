@@ -11,7 +11,7 @@ namespace StarWars
     {
         Image image;
         Random rnd = new Random(100);
-        public MedicalKit(Point pos, Point dir, Size size) : base(pos, dir, size) => image = Image.FromFile("medkit.jpg");
+        public MedicalKit(Point pos, Point dir, Size size) : base(pos, dir, size) => image = Image.FromFile("kit.jpg");
         public override void Draw() => Game.buffer.Graphics.DrawImage(image, pos.X, pos.Y);
         public override void Update()
         {

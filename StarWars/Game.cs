@@ -21,7 +21,7 @@ namespace StarWars
         static int score = 0;
         static int iteration = 0;
         static string fileName = "LogFile.txt";
-        static string path = AppDomain.CurrentDomain.BaseDirectory + @"\" + fileName;
+        static string path = AppDomain.CurrentDomain.BaseDirectory  + fileName;
         static Timer timer = new Timer();
         /// <summary>
         /// Append message to the existed file
@@ -31,12 +31,14 @@ namespace StarWars
         static public int Width { get; set; }
         static public int Height { get; set; }
         static WrirteLog log = new WrirteLog(FullLog);
+        
 
 
         static Game(){}
 
         static public void Init(Form form)
          {
+            
             Graphics g;
         context = BufferedGraphicsManager.Current;
             g = form.CreateGraphics();
@@ -74,8 +76,11 @@ namespace StarWars
             
         }
         private static void Form_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.ControlKey) bullets.Add( new Bullet(new Point(ship.rectangle.X + 10, ship.rectangle.Y + 4), new Point(4, 0), new Size(4, 1)));
+         {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                bullets.Add(new Bullet(new Point(ship.rectangle.X + 10, ship.rectangle.Y + 4), new Point(4, 0), new Size(4, 1))); 
+            }
             if (e.KeyCode == Keys.Up) ship.Up();
             if (e.KeyCode == Keys.Down) ship.Down();
             if (e.KeyCode == Keys.Left) ship.Left();
@@ -91,23 +96,24 @@ namespace StarWars
 
         static public void Update()
         {
-            for (int iter = 0; iter < bullets.Count; iter++)
-            {
-                for (int i = 0; i < asteroids.Count; i++)
+         //we need to process with a collision between bullets and asteroids
+            for (int i = 0; i < asteroids.Count; i++)
+               {
+                for (int iter = 0; iter < bullets.Count; iter++)
                 {
                     if (asteroids[i] != null)
                     {
                         asteroids[i].Update();
                         if (bullets[iter] != null && bullets[iter].Collision(asteroids[i]))
                         {
-                            System.Media.SystemSounds.Hand.Play();
-                            bullets.Remove(bullets[iter]);
-                            iter--;
-                            asteroids.Remove(asteroids[i]);
-                            i--;
-                            score += 10;
-                            log("Shot, plus 10 to score");
-                            continue;
+                         System.Media.SystemSounds.Hand.Play();
+                        bullets.Remove(bullets[iter]);
+                        iter--;
+                        asteroids.Remove(asteroids[i]);
+                        i--;
+                        score += 10;
+                        log("Shot, plus 10 to score");
+                         continue;
                         }
                         if (ship.Collision(asteroids[i]))
                         {
@@ -120,8 +126,11 @@ namespace StarWars
 
                         }
                     }
+                    bullets[iter].Update();
                 }
             }
+           
+            
             for (int it=0;it<Mkits.Count;it++)
             {
                 if(Mkits[it]!=null)
@@ -142,34 +151,51 @@ namespace StarWars
         static public void Draw()
         {
             buffer.Graphics.DrawImage(image, new Point());
-            foreach (Bullet b in bullets)
+            ship.Draw();
+            if (bullets.Count > 0)
             {
-                foreach (Asteroid obj in asteroids)
+                foreach (Bullet bul in bullets)
+                    bul.Draw();
+            }
+            //foreach (Bullet b in bullets)
+            //{
+            foreach (Asteroid obj in asteroids)
                 {
                     if (obj != null)
                     {
-                        if (obj.Collision(b))
-                        {
-                            System.Media.SystemSounds.Hand.Play();
-                            score += 10;
-                            b.Reset(ship.rectangle.X, ship.rectangle.Y);
-                        }
+                        //if (obj.Collision(b))
+                        //{
+                        //    System.Media.SystemSounds.Hand.Play();
+                        //    score -= 10;
+                        //    b.Reset(ship.rectangle.X, ship.rectangle.Y);
+                        //}
+                        if(obj.Collision(ship))
+                    {
+                        score -= 10;
+                        ship.Energy -= 10;
+
+                    }
                     }
                     obj.Draw();
                 }
-            }
-            foreach(MedicalKit kit in Mkits)
+            // }
+            if (ship.Energy < 10)
             {
-                if(kit!=null)
+                foreach (MedicalKit kit in Mkits)
                 {
-                    if (kit.Collision(ship))
+                    
+                    if (kit != null)
                     {
-                        ship.Energy += 10;
+                        if (kit.Collision(ship))
+                        {
+                            ship.Energy += 10;
+                        }
                     }
+                    kit.Draw();
                 }
             }
             //if (bullet!=null) bullet.Draw();
-            buffer.Graphics.DrawString("Energy: {0}" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
+            buffer.Graphics.DrawString("Energy:" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
             buffer.Render();
         }
 
@@ -180,14 +206,14 @@ namespace StarWars
             asteroids = new List<Asteroid>(30);
             Mkits= new List<MedicalKit>(5);
             rnd = new Random();
-
+            ship.Draw();
             //bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
             log("All objects have been loaded");
                 
-            for (int i = 0; i < asteroids.Count; i++)
-                asteroids[i] = new Asteroid(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0,10)-15,0), new Size(30, 30));
-            for (int it = 0; it < Mkits.Count; it++)
-                Mkits[it] = new MedicalKit(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0, 10) - 15, 0), new Size(20, 30));
+            for (int i = 0; i < 30; i++)
+                asteroids.Add(new Asteroid(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0,10)-15,0), new Size(10, 10)));
+            for (int it = 0; it < 5; it++)
+                Mkits.Add(new MedicalKit(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0, 10) - 15, 0), new Size(5, 5)));
             
         }
         static public void GameOver()
