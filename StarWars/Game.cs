@@ -209,11 +209,12 @@ namespace StarWars
             ship.Draw();
             //bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
             log("All objects have been loaded");
-                
+            for (int i = 0; i < bullets.Count; i++)
+                bullets.Add(new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1)));
             for (int i = 0; i < 30; i++)
-                asteroids.Add(new Asteroid(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0,10)-15,0), new Size(10, 10)));
+                asteroids.Add(new Asteroid(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0,10)-15,0), new Size(50, 50)));
             for (int it = 0; it < 5; it++)
-                Mkits.Add(new MedicalKit(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0, 10) - 15, 0), new Size(5, 5)));
+                Mkits.Add(new MedicalKit(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0, 10) - 15, 0), new Size(20, 20)));
             
         }
         static public void GameOver()
