@@ -18,6 +18,10 @@ namespace StarWars
         {
             pos.X = x + 5;
             pos.Y = y;
+
+            pos.X = 0;
+            pos.Y = Game.rnd.Next(0, Game.Height);
+
         }
     }
 }

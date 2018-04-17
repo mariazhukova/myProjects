@@ -95,6 +95,52 @@ namespace StarWars
 
         static public void Update()
         {
+            foreach (Bullet obj in bullets)
+                obj.Update();
+
+            for (int i = 0; i < asteroids.Count; i++)
+            {
+                if (asteroids[i] != null)
+                    asteroids[i].Update();
+                for (int j = 0; j < bullets.Count; j++)
+                    if (asteroids[i] != null && bullets[j].Collision(asteroids[i]))
+                    {
+                        count++;
+                        asteroids.RemoveAt(i);
+                        i--;
+
+                        bullets.RemoveAt(j);
+                        j--;
+                        continue;
+                    }
+
+
+                if (asteroids[i] != null && ship.Collision(asteroids[i]))
+                {
+                    ship.EnergyLow(rnd.Next(1, 10));
+                    asteroids.RemoveAt(i);
+                    i--;
+                    if (ship.Energy <= 0) ship.Die();
+
+                }
+
+            }
+
+            for (int i = 0; i < medical.Length; i++)
+            {
+                if (medical[i] != null)
+                {
+                    medical[i].Update();
+
+                    if (ship.Collision(medical[i]))
+                    {
+                        ship.EnergyMore(rnd.Next(1, 10));
+                        medical[i] = null;
+                        if (ship.Energy > 100) ship.Energy = 100;
+                    }
+                }
+            }
+
             //we need to process with a collision between bullets and asteroids
             for (int iter = 0; iter < bullets.Count; iter++)
             {
@@ -169,6 +215,26 @@ namespace StarWars
                 { obj.Draw(); }
             }
             if (ship.Energy < 0) GameOver();
+
+            static public void Draw()
+            {
+
+
+                buffer.Graphics.DrawImage(newImage, new Point());
+
+                foreach (Asteroid obj in asteroids)
+                    if (obj != null) obj.Draw();
+
+
+                foreach (Bullet obj in bullets) obj.Draw();
+
+                ship.Draw();
+                buffer.Graphics.DrawString("Energy" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
+
+                if (ship.Energy < 30) foreach (medical_kit med in medical)
+                        if (med != null) med.Draw();
+                buffer.Render();
+            }
 
             //foreach (Bullet b in bullets)
             //{

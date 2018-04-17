@@ -18,6 +18,11 @@ namespace StarWars
             pos.X = dir.X;
             if (pos.X < 0) { pos.X = Game.Width + 20; pos.Y = Game.rnd.Next(0, Game.Height); }
             else pos.X = pos.X + 3;
+
+            pos.X = pos.X + dir.X;
+            if (pos.X < 0) pos.X = Game.Width + size.Width;
+
+
         }
     }
 }

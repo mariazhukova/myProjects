@@ -14,6 +14,24 @@ namespace StarWars
         Image image;
         public static event Message MessageDie;
         public int Energy { get; set; }
+
+        public int Energy
+        {
+            get { return energy; }
+            set { }
+        }
+
+
+        public void EnergyLow(int e)
+        {
+            energy -= e;
+        }
+
+        public void EnergyMore(int e)
+        {
+            energy += e;
+        }
+    
         public Ship (Point pos, Point dir, Size size) :base(pos,dir,size) => image = Image.FromFile("ship21.png");
         
         public override void Draw()=> Game.buffer.Graphics.DrawImage(image, pos.X, pos.Y);
