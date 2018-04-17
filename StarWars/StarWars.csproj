@@ -73,17 +73,5 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\space.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\space.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\asteroid.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\Debug\asteroid2.png" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

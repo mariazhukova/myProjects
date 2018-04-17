@@ -10,11 +10,9 @@ namespace StarWars
     class Asteroid : BaseObject
     {
         Image image;
-        Random rnd = new Random(1);
-
-        string[] arrayimg = new string[] { "asteroid2.png", "asteroid.jpg" };
-
-        public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size) => image = Image.FromFile(arrayimg[rnd.Next(0,1)]);
+        Random rnd = new Random();
+        string[] arrayimg = new string[] { "asteroid12.png", "asteroid4.png", "asteroid.png" };
+        public Asteroid(Point pos, Point dir, Size size) : base(pos, dir, size) => image = Image.FromFile(arrayimg[rnd.Next(0, 3)]);
            
         public override void Draw() => Game.buffer.Graphics.DrawImage(image, pos.X, pos.Y);
         //Game.buffer.Graphics.DrawImage(image, pos.X, pos.Y, size.Width, size.Height);

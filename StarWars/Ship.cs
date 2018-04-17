@@ -13,8 +13,8 @@ namespace StarWars
         int energy = 100;
         Image image;
         public static event Message MessageDie;
-        public int Energy { get { return energy; } set { } }
-        public Ship (Point pos, Point dir, Size size) :base(pos,dir,size) => image = Image.FromFile("ship.jpg");
+        public int Energy { get; set; }
+        public Ship (Point pos, Point dir, Size size) :base(pos,dir,size) => image = Image.FromFile("ship21.png");
         
         public override void Draw()=> Game.buffer.Graphics.DrawImage(image, pos.X, pos.Y);
 
@@ -32,7 +32,6 @@ namespace StarWars
         {
             if (pos.Y > Game.Height) pos.Y = pos.Y;
             else pos.Y = pos.Y + dir.Y;
-
         }
         public void Left()
         {

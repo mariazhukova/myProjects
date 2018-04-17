@@ -12,7 +12,7 @@ namespace StarWars
         Image image;
         public Bullet(Point pos, Point dir, Size size) : base(pos, dir, size) => image = Image.FromFile("bullet.png");
        
-        public override void Draw() => Game.buffer.Graphics.DrawRectangle(Pens.OrangeRed, pos.X, pos.Y, size.Width, size.Height);
+        public override void Draw() => Game.buffer.Graphics.DrawImage(image, pos.X, pos.Y, size.Width, size.Height);
         public override void Update() => pos.X = pos.X + 10;
         public void Reset(int x,int y)
         {
