@@ -64,15 +64,23 @@ namespace StarWars
            try
            {
 
-               using (StreamWriter file = new StreamWriter(path, true, System.Text.Encoding.Default))
+               using (FileStream stream = new FileStream(path, FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
                {
-                   file.WriteLineAsync("Start game: ");
-                   file.WriteLine("{0}:{1}",iteration,message);
-                   iteration++;
+                    using (StreamWriter sw = new StreamWriter(stream))
+                    {
+                        byte[] array = System.Text.Encoding.Default.GetBytes(iteration + ":" + " " + message);
+                        stream.Write(array, 0, message.Length);
+                        iteration++;
+                    }
                }
-           }
+               
+            }
                 catch (Exception ex)
                 { Console.WriteLine(ex.Message); }
+            finally
+            {
+               // stream.Close();
+            }
             
         }
         private static void Form_KeyDown(object sender, KeyEventArgs e)
