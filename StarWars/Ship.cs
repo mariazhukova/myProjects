@@ -13,8 +13,7 @@ namespace StarWars
         int energy = 100;
         Image image;
         public static event Message MessageDie;
-        public int Energy { get; set; }
-
+     
         public int Energy
         {
             get { return energy; }
