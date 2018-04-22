@@ -15,7 +15,7 @@ namespace Files
             string text = Console.ReadLine();
 
             // запись в файл
-            using (FileStream fstream = new FileStream(@"C:\SomeDir\noname\note.txt", FileMode.OpenOrCreate))
+            using (FileStream fstream = new FileStream(@"D:\Study\myProjects\StarWars\bin\Debug\LogFile.txt", FileMode.OpenOrCreate))
             {
                 // преобразуем строку в байты
                 byte[] array = System.Text.Encoding.Default.GetBytes(text);
@@ -25,7 +25,7 @@ namespace Files
             }
 
             // чтение из файла
-            using (FileStream fstream = File.OpenRead(@"C:\SomeDir\noname\note.txt"))
+            using (FileStream fstream = File.OpenRead(@"D:\Study\myProjects\StarWars\bin\Debug\LogFile.txt"))
             {
                 // преобразуем строку в байты
                 byte[] array = new byte[fstream.Length];

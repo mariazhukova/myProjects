@@ -64,21 +64,29 @@ namespace StarWars
            try
            {
 
-               using (StreamWriter file = new StreamWriter(path, true, System.Text.Encoding.Default))
+               using (FileStream stream = new FileStream(path, FileMode.Open,FileAccess.Read,FileShare.ReadWrite))
                {
-                   file.WriteLineAsync("Start game: ");
-                   file.WriteLine("{0}:{1}",iteration,message);
-                   iteration++;
+                    using (StreamWriter sw = new StreamWriter(stream))
+                    {
+                        byte[] array = System.Text.Encoding.Default.GetBytes(iteration + ":" + " " + message);
+                        stream.Write(array, 0, message.Length);
+                        iteration++;
+                    }
                }
-           }
+               
+            }
                 catch (Exception ex)
                 { Console.WriteLine(ex.Message); }
+            finally
+            {
+               // stream.Close();
+            }
             
         }
         private static void Form_KeyDown(object sender, KeyEventArgs e)
          {
             if (e.KeyCode == Keys.ControlKey)
-                bullets.Add(new Bullet(new Point(ship.rectangle.X + 10, ship.rectangle.Y + 4), new Point(4, 0), new Size(4, 1))); 
+                bullets.Add(new Bullet(new Point(ship.rectangle.X + 10, ship.rectangle.Y + 4), new Point(4, 0), new Size(10, 5))); 
           
             if (e.KeyCode == Keys.Up) ship.Up();
             if (e.KeyCode == Keys.Down) ship.Down();
@@ -98,58 +106,16 @@ namespace StarWars
             foreach (Bullet obj in bullets)
                 obj.Update();
 
+            //we need to process with a collision between bullets and asteroids
+
             for (int i = 0; i < asteroids.Count; i++)
             {
                 if (asteroids[i] != null)
                     asteroids[i].Update();
-                for (int j = 0; j < bullets.Count; j++)
-                    if (asteroids[i] != null && bullets[j].Collision(asteroids[i]))
-                    {
-                        count++;
-                        asteroids.RemoveAt(i);
-                        i--;
-
-                        bullets.RemoveAt(j);
-                        j--;
-                        continue;
-                    }
-
-
-                if (asteroids[i] != null && ship.Collision(asteroids[i]))
+                for (int iter = 0; iter < bullets.Count; iter++)
                 {
-                    ship.EnergyLow(rnd.Next(1, 10));
-                    asteroids.RemoveAt(i);
-                    i--;
-                    if (ship.Energy <= 0) ship.Die();
-
-                }
-
-            }
-
-            for (int i = 0; i < medical.Length; i++)
-            {
-                if (medical[i] != null)
-                {
-                    medical[i].Update();
-
-                    if (ship.Collision(medical[i]))
-                    {
-                        ship.EnergyMore(rnd.Next(1, 10));
-                        medical[i] = null;
-                        if (ship.Energy > 100) ship.Energy = 100;
-                    }
-                }
-            }
-
-            //we need to process with a collision between bullets and asteroids
-            for (int iter = 0; iter < bullets.Count; iter++)
-            {
-                for (int i = 0; i < asteroids.Count; i++)
-               {
-                if (asteroids[i] != null)
                     {  if (bullets[iter] != null && bullets[iter].Collision(asteroids[i]))
                         {
-                         bullets[iter].Update();
                          System.Media.SystemSounds.Hand.Play();
                         bullets.Remove(bullets[iter]);
                         iter--;
@@ -157,9 +123,7 @@ namespace StarWars
                         i--;
                         score += 10;
                         log("Shot, plus 10 to score");
-                            bullets[iter].Reset(bullets[iter].rectangle.X, bullets[iter].rectangle.Y);
-                            continue;
-                            
+                        continue;
                         }
                         
                     }
@@ -167,33 +131,32 @@ namespace StarWars
                 }
                 
             }
-
-            foreach (Asteroid ast in asteroids)
+            for (int i = 0; i < asteroids.Count; i++)
             {
-                if (ship.Collision(ast))
+                if (ship.Collision(asteroids[i]))
                 {
-                        ship.Energy = ship.Energy-10;
-                        System.Media.SystemSounds.Hand.Play();
-                        log("Ship was injured");
+                    ship.EnergyLow(10);
                 }
-                ast.Update();
             }
 
-            if (ship.Energy < 0) GameOver();
-            
-            for (int it=0;it<Mkits.Count;it++)
+            if (ship.Energy < 50)
             {
-                if(Mkits[it]!=null)
+                for (int it = 0; it < Mkits.Count; it++)
                 {
-                    if(Mkits[it].Collision(ship))
+                    if (Mkits[it] != null)
                     {
-                        Mkits.Remove(Mkits[it]);
-                        it--;
-                        ship.Energy += 10;
-                        log("You have taken the medical kit,plus 10 to score");
+                        Mkits[it].Update();
+                        if (ship.Collision(Mkits[it]))
+                        {
+                            Mkits.Remove(Mkits[it]);
+                            it--;
+                            ship.EnergyMore(10);
+                            if (ship.Energy > 100) ship.Energy = 100;
+                            log("You have taken the medical kit,plus 10 to score");
+                        }
                     }
+
                 }
-                Mkits[it].Update();
             }
            
             
@@ -204,75 +167,37 @@ namespace StarWars
             buffer.Graphics.DrawImage(image, new Point());
             ship.Draw();
 
-            if (bullets.Count > 0)
-            {
-                foreach (Bullet bul in bullets)
-                    bul.Draw();
-            }
+            foreach (Bullet bul in bullets)  bul.Draw();
+            
             foreach (Asteroid obj in asteroids)
             {
                 if (obj != null)
                 { obj.Draw(); }
             }
+
             if (ship.Energy < 0) GameOver();
 
-            static public void Draw()
-            {
-
-
-                buffer.Graphics.DrawImage(newImage, new Point());
-
-                foreach (Asteroid obj in asteroids)
-                    if (obj != null) obj.Draw();
-
-
-                foreach (Bullet obj in bullets) obj.Draw();
-
-                ship.Draw();
-                buffer.Graphics.DrawString("Energy" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
-
-                if (ship.Energy < 30) foreach (medical_kit med in medical)
+            if (ship.Energy < 30) foreach (MedicalKit med in Mkits)
                         if (med != null) med.Draw();
-                buffer.Render();
-            }
 
-            //foreach (Bullet b in bullets)
-            //{
-
-            //if (obj.Collision(b))
-            //{
-            //    System.Media.SystemSounds.Hand.Play();
-            //    score -= 10;
-            //    b.Reset(ship.rectangle.X, ship.rectangle.Y);
-            //}
-            //    if (obj.Collision(ship))
-            //    {
-            //        score -= 10;
-            //        ship.Energy -= 10;
-
-            //    }
-            //    }
-            //    obj.Draw();
-            //}
-
-
-            foreach (MedicalKit kit in Mkits)
+            if (ship.Energy < 50)
             {
-
-                if (kit != null)
+                foreach (MedicalKit kit in Mkits)
                 {
-                    if (kit.Collision(ship))
+                    if (kit != null)
                     {
-                        ship.Energy += 10;
+                        if (kit.Collision(ship))
+                        {
+                            ship.EnergyMore(10);
+                        }
                     }
+                    kit.Draw();
                 }
-                kit.Draw();
             }
-
-            //if (bullet!=null) bullet.Draw();
             buffer.Graphics.DrawString("Energy:" + ship.Energy, SystemFonts.DefaultFont, Brushes.White, 0, 0);
             buffer.Render();
         }
+   
 
         static public void Load()
         {
@@ -283,14 +208,11 @@ namespace StarWars
             rnd = new Random();
             ship.Draw();
             ship.Energy = 100;
-            //bullet = new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1));
             log("All objects have been loaded");
-            for (int i = 0; i < bullets.Count; i++)
-                bullets.Add(new Bullet(new Point(0, 200), new Point(5, 0), new Size(4, 1)));
             for (int i = 0; i < 15; i++)
-                asteroids.Add(new Asteroid(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0,10)-15,0), new Size(50, 50)));
-            for (int it = 0; it < 5; it++)
-                Mkits.Add(new MedicalKit(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0, 10) - 15, 0), new Size(20, 20)));
+                asteroids.Add(new Asteroid(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0,10)-15,0), new Size(30, 30)));
+            for (int it = 0; it < 3; it++)
+                Mkits.Add(new MedicalKit(new Point(800, rnd.Next(Height)), new Point(rnd.Next(0, 10) - 15, 0), new Size(30, 30)));
             
         }
         static public void GameOver()

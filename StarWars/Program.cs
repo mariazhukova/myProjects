@@ -17,12 +17,9 @@ namespace StarWars
             {
                 int width = 800;
                 int height = 600;
-                int score = 0;
                 form.Width = width;
                 form.Height = height;
-                //form.Show();
-                //Application.Run(form);
-
+               
             }
             catch(Exception ex)
             {
