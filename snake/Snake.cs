@@ -98,7 +98,6 @@ namespace snake
                     return true;
             }
             return false;
-
         }
 
         public bool IsCross()
@@ -110,7 +109,6 @@ namespace snake
                     return true;
             }
             return false;
-
         }
     }
 
