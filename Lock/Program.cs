@@ -26,7 +26,7 @@ namespace Lock
                 {
                     list.Add(5);
                 }
-                Thread.Sleep(5000);
+                Thread.Sleep(500);
             }
         }
 
