@@ -25,7 +25,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lock", "Lock\Lock.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enumGroup", "enumGroup\enumGroup.csproj", "{7FBDCB42-4B59-448F-B941-31AF5A68F367}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yeld", "yeld\yeld.csproj", "{87BD52E4-7404-4876-9557-D46FA426703B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yeld", "yeld\yeld.csproj", "{87BD52E4-7404-4876-9557-D46FA426703B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Async_await", "Async_await\Async_await.csproj", "{384AC612-E088-4F94-AC54-9BB411B0BA56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{87BD52E4-7404-4876-9557-D46FA426703B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87BD52E4-7404-4876-9557-D46FA426703B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87BD52E4-7404-4876-9557-D46FA426703B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{384AC612-E088-4F94-AC54-9BB411B0BA56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{384AC612-E088-4F94-AC54-9BB411B0BA56}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{384AC612-E088-4F94-AC54-9BB411B0BA56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{384AC612-E088-4F94-AC54-9BB411B0BA56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
