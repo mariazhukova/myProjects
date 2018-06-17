@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lock", "Lock\Lock.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enumGroup", "enumGroup\enumGroup.csproj", "{7FBDCB42-4B59-448F-B941-31AF5A68F367}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yeldExample", "yeldExample\yeldExample.csproj", "{A8300DAC-E460-4882-AC44-32DC8E8A633B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{7FBDCB42-4B59-448F-B941-31AF5A68F367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FBDCB42-4B59-448F-B941-31AF5A68F367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FBDCB42-4B59-448F-B941-31AF5A68F367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
