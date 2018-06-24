@@ -25,10 +25,7 @@ namespace Delegat
         public void Add(string name)
         {
             this.Name = name;
-            bookTracker.AddBook(Name, delegate (int i)
-             {
-                 i++;
-             });
+            bookTracker.AddBook(Name, delegate (int i){ i++; });
             
             
         }

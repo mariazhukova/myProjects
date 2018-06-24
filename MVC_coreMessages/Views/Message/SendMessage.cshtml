@@ -1,0 +1,12 @@
+﻿@model MVC_coreMessages.Models.Message
+@{
+    ViewData["Title"] = "SendMessage";
+}
+
+<h2>Send a message</h2>
+<h3>Enter your message below</h3>
+<form asp-controller="Message" asp-action="sendtheMessage" method="post" id="messageBody">
+    Message:  <input asp-for="MessageBody" /> <br />
+   <button id="sendMessageClick" type="submit" onclick="location.href='@Url.Action("sendtheMessage", "Message")?id=' + document.getElementById('messageBody').value">Send</button>
+</form>
+
