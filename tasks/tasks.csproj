@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92609CA2-8BC8-4717-A8BB-E968D60981EC}</ProjectGuid>
+    <ProjectGuid>{0A4903D9-584C-405E-854A-C2DA68214FEB}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Delegat</RootNamespace>
-    <AssemblyName>Delegat</AssemblyName>
+    <RootNamespace>tasks</RootNamespace>
+    <AssemblyName>tasks</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,11 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookTracker.cs" />
-    <Compile Include="GrnericDelegate.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimerDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

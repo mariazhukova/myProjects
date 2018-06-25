@@ -16,7 +16,7 @@ namespace Delegat
             strgenericdekegete("string");
            
             GenericDelegate<int> intgenericDelegate = new GenericDelegate<int>(MygenericFun);
-            intgenericDelegate(109);
+            intgenericDelegate.Invoke(109);
         }
 
         private void MygenericFun(string obj)

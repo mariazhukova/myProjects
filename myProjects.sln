@@ -25,6 +25,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lock", "Lock\Lock.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "enumGroup", "enumGroup\enumGroup.csproj", "{7FBDCB42-4B59-448F-B941-31AF5A68F367}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "yeld", "yeld\yeld.csproj", "{87BD52E4-7404-4876-9557-D46FA426703B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Async_await", "Async_await\Async_await.csproj", "{384AC612-E088-4F94-AC54-9BB411B0BA56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "elvis", "elvis\elvis.csproj", "{74B392F7-3DE1-4DB4-AEEE-835FB2D4EAD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasks", "tasks\tasks.csproj", "{0A4903D9-584C-405E-854A-C2DA68214FEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_coreMessages", "MVC_coreMessages\MVC_coreMessages.csproj", "{62C10F2E-2BEC-40CC-B99D-C928C1CB29D3}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "yeldExample", "yeldExample\yeldExample.csproj", "{A8300DAC-E460-4882-AC44-32DC8E8A633B}"
 EndProject
 Global
@@ -77,10 +87,6 @@ Global
 		{7FBDCB42-4B59-448F-B941-31AF5A68F367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FBDCB42-4B59-448F-B941-31AF5A68F367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FBDCB42-4B59-448F-B941-31AF5A68F367}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8300DAC-E460-4882-AC44-32DC8E8A633B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

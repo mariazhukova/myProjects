@@ -13,6 +13,11 @@ namespace myProjects
 
         static void Main(string[] args)
         {
+            TestLinq();
+
+        }
+        static void PersonLinq()
+        {
             List<string> personsList = new List<string>();
             Hashtable hashtable = new Hashtable();
             Person personV = new Person("Василий", 32);
@@ -58,9 +63,9 @@ namespace myProjects
             }
 
             List<int> numQuery2 =
-    (from num in numbers
-     where (num % 2) == 0
-     select num).ToList();
+        (from num in numbers
+         where (num % 2) == 0
+         select num).ToList();
 
             // or like this:
             // numQuery3 is still an int[]
@@ -73,6 +78,18 @@ namespace myProjects
             var numCount = numbers.Where(n => n < 3 || n > 7).Count();
         }
 
-       
+        static IEnumerable TestLinq()
+        {
+            decimal[] loan = { 303m, 1000m, 85579m, 501.51m, 603m, 1200m, 400m, 22m };
+
+            IEnumerable<decimal> lingQuery =
+                from amount in loan
+                where amount % 2 == 0
+                orderby amount ascending
+                select amount;
+            return lingQuery;
+        }
     }
+
+
 }
