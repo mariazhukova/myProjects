@@ -11,6 +11,6 @@ namespace MVC_coreMessages.Models
         [XmlAttribute]
         public int Id { get; set; }
         [XmlElement]
-        public IEnumerable<Message> Messages {get;set;}
+        public List<Message> Messages {get;set;}
     }
 }

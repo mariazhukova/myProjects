@@ -13,13 +13,7 @@ namespace MVC_coreMessages.Services
     class ServiceMessage:Service
     {
         XDocument xDocument = null;
-        XElement messages = null;
-        XElement message = null;
-        XElement userId = null;
-        XElement bodyMessage = null;
-        XAttribute userIdAttribute = null;
-        XAttribute messageIdAttribute = null;
-        int messageid = 0;
+     
         int maxIdMessage = 0;
         int maxIdUser = 0;
         int userIdTempData { get; set; }
@@ -27,10 +21,10 @@ namespace MVC_coreMessages.Services
         public ServiceMessage(int UserId ,string message)
         {
             userIdTempData = UserId;
-            string res = sendTheMessage(message);
+            string res = sendtheMessage(message);
         }
 
-        private string sendTheMessage(string message)
+        private string sendtheMessage(string message)
         {
             if (!File.Exists("./Messages.xml"))
             {
@@ -64,11 +58,13 @@ namespace MVC_coreMessages.Services
                 else
                 {
                     maxIdUser = users.AllUsers.Max(u => u.Id);
-                    users.AllUsers.Append(new User()
+                    User newUser = new User()
                     {
                         Id = maxIdUser + 1,
-                        Messages = new List<Message>().Append(new Message() { Id = 0, MessageBody = messageBody })
-                    });
+                        Messages = new List<Message>()
+                    };
+                    newUser.Messages.Add(new Message() { Id = 0, MessageBody = messageBody });
+                    users.AllUsers.Append(newUser);
                 }
                 
                 // Serialize.

@@ -14,16 +14,11 @@ namespace MVC_coreMessages.Controllers
     {
         ServiceUser serviseUser = null;
         User user = null;
-        public UserController()
+            
+        public void CreateNewUser()
         {
-            CreateNewUser();
-        }
-      
-        private void CreateNewUser()
-        {
-            user = new User();
-            serviseUser = new ServiceUser(ref user);
-            TempData["User"] = user.Id;
+            
+           
         }
 
 

@@ -3,38 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MVC_coreMessages.Models;
 using MVC_coreMessages.Services;
+using MVC_coreMessages.Servises;
 
 namespace MVC_coreMessages.Controllers
 {
-    public class MessageController : Controller,IMessage
+    public class MessageController : Controller
     {
         ServiceMessage service = null;
+        ServiceUser serviceUseer = null;
+        User user = null;
         public string GetMessages(int IdUser)
         {
             throw new NotImplementedException();
         }
-
+      
         public IActionResult SendMessage()
         {
-            string result = sendtheMessage("");
-            return View();
-        }
+            Request.Query.Keys.Contains("MessageBody");
 
-        public string sendtheMessage(string message)
-        {
             int res = 0;
 
-            if (TempData["User"] == null)
+            if (user== null)
             {
-                RedirectToAction("CreateNewUser", "User");
+                user = new User();
+                serviceUseer = new ServiceUser(ref user);
+                
             }
             else
             {
                 Int32.TryParse(TempData["User"].ToString(), out res);
-                service = new ServiceMessage(res, message);
+                service = new ServiceMessage(res, "");
             }
-            return "Ok";
+           
+            return View();
         }
+
+        public IActionResult sendtheMessage()
+        {
+         
+            //Int32.TryParse(TempData["User"].ToString(), out res);
+            
+            service = new ServiceMessage(0, "");
+            return View("ResultMessage");
+        }
+
+
+
+
     }
 }

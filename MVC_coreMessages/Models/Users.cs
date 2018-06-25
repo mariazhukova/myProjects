@@ -10,6 +10,6 @@ namespace MVC_coreMessages.Models
     public class Users
     {
         [XmlElement]
-        public IEnumerable<User> AllUsers { get; set; }
+        public List<User> AllUsers { get; set; }
     }
 }
