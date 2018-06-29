@@ -28,7 +28,8 @@ namespace MVC_coreMessages.Services
                 User newUser = new User() { Id = Id, Messages = new List<Message>() { new Message() { Id = 0, MessageBody = messageBody } } };
                 // newUser.Messages.Add(new Message() { Id = 0, MessageBody = messageBody });
                 Users users = new Users();
-                users.AllUsers.Add( newUser);
+                users.AllUsers= new List<User>() { newUser }; 
+
                 var serializer = new XmlSerializer(users.GetType());
                 using (var writer = XmlWriter.Create("Messages.xml"))
                 {

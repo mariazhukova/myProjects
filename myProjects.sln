@@ -33,7 +33,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "elvis", "elvis\elvis.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tasks", "tasks\tasks.csproj", "{0A4903D9-584C-405E-854A-C2DA68214FEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVC_coreMessages", "MVC_coreMessages\MVC_coreMessages.csproj", "{62C10F2E-2BEC-40CC-B99D-C928C1CB29D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC_coreMessages", "MVC_coreMessages\MVC_coreMessages.csproj", "{62C10F2E-2BEC-40CC-B99D-C928C1CB29D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCsimplecode", "MVCsimplecode\MVCsimplecode.csproj", "{5BB6B3D8-878A-4B40-AAB7-EEE7A2428B1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{62C10F2E-2BEC-40CC-B99D-C928C1CB29D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62C10F2E-2BEC-40CC-B99D-C928C1CB29D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62C10F2E-2BEC-40CC-B99D-C928C1CB29D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BB6B3D8-878A-4B40-AAB7-EEE7A2428B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BB6B3D8-878A-4B40-AAB7-EEE7A2428B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BB6B3D8-878A-4B40-AAB7-EEE7A2428B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BB6B3D8-878A-4B40-AAB7-EEE7A2428B1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

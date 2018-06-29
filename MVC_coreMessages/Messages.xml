@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<Users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AllUsers>
+    <User Id="0">
+      <Messages Id="5">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="6">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="7">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="8">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="9">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="10">
+        <MessageBody>New message</MessageBody>
+      </Messages>
+      <Messages Id="11">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="12">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="13">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="14">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="15">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="16">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="17">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="18">
+        <MessageBody>Hello</MessageBody>
+      </Messages>
+      <Messages Id="19">
+        <MessageBody>south moravia 70, Voronezh, Russian Federation</MessageBody>
+      </Messages>
+    </User>
+  </AllUsers>
+</Users>

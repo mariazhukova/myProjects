@@ -7,35 +7,69 @@ using System.IO;
 using MVC_coreMessages.Models;
 using System.Xml.Serialization;
 using System.Xml;
+using Microsoft.AspNetCore.Mvc;
 
 namespace MVC_coreMessages.Services
 {
-    class ServiceMessage:Service
+    class ServiceMessage
     {
-        XDocument xDocument = null;
-     
         int maxIdMessage = 0;
         int maxIdUser = 0;
         int userIdTempData { get; set; }
 
-        public ServiceMessage(int UserId ,string message)
+        public ServiceMessage()
         {
-            userIdTempData = UserId;
-            string res = sendtheMessage(message);
         }
 
-        private string sendtheMessage(string message)
+
+        public string sendMessage(int UserId,string message)
         {
+            userIdTempData = UserId;
             if (!File.Exists("./Messages.xml"))
             {
-                //xDocument = new XDocument();
-                return CreateaFile(message);
+                return SerializeToFile(messageBody:message);
             }
             else
             {
-                xDocument = XDocument.Load("./Messages.xml");
                 return AddMessage(message);
             }
+        }
+
+        public int sendMessage(string message)
+        {
+            if (!File.Exists("./Messages.xml"))
+            {
+                SerializeToFile(messageBody: message);
+                userIdTempData = 0;
+            }
+            else
+            {
+                userIdTempData = CreateNewUserID();
+                AddMessage(message);
+            }
+            return userIdTempData;
+        }
+
+        private string SerializeToFile(int Id = 0, string messageBody = "")
+        {
+            try
+            {
+                User newUser = new User() { Id = Id, Messages = new List<Message>() { new Message() { Id = userIdTempData, MessageBody = messageBody } } };
+                Users users = new Users();
+                users.AllUsers = new List<User>() { newUser };
+
+                var serializer = new XmlSerializer(users.GetType());
+                using (var writer = XmlWriter.Create("Messages.xml"))
+                    serializer.Serialize(writer, users);
+               
+                return "Ok";
+
+            }
+            catch (Exception ex)
+            {
+                return "An error is {0}" + ex.Message;
+            }
+
         }
 
         private string AddMessage(string messageBody)
@@ -48,25 +82,10 @@ namespace MVC_coreMessages.Services
 
                 using (var reader = XmlReader.Create("Messages.xml"))
                     users = (Users)serializer.Deserialize(reader);
-
-                if (users.AllUsers.Select(x => x.Id == userIdTempData) != null)
-                {
-                    maxIdMessage = users.AllUsers.Where(n=>n.Id==userIdTempData).Single().Messages.Max(m => m.Id);
-                    newMessageBody = new Message() { Id = maxIdMessage + 1, MessageBody = messageBody };
-                    users.AllUsers.Where(x => x.Id == userIdTempData).Single().Messages.Append(newMessageBody);
-                }
-                else
-                {
-                    maxIdUser = users.AllUsers.Max(u => u.Id);
-                    User newUser = new User()
-                    {
-                        Id = maxIdUser + 1,
-                        Messages = new List<Message>()
-                    };
-                    newUser.Messages.Add(new Message() { Id = 0, MessageBody = messageBody });
-                    users.AllUsers.Append(newUser);
-                }
-                
+                newMessageBody = new Message() { Id = maxIdMessage + 1, MessageBody = messageBody };
+                maxIdMessage = users.AllUsers.Where(n => n.Id == userIdTempData).Single().Messages.Max(m => m.Id);
+                users.AllUsers.Where(x => x.Id == userIdTempData).Single().Messages.Add(newMessageBody);
+                                
                 // Serialize.
                 using (Stream outputStream = File.OpenWrite("Messages.xml"))
                     serializer.Serialize(outputStream, users);
@@ -75,6 +94,61 @@ namespace MVC_coreMessages.Services
             catch(Exception ex)
             {
                 return "An error is {0}" + ex.Message;
+            }
+        }
+
+        
+        public List<Message> GetMessagesbyUserId(int userid)
+        {
+            Users users = null;
+            List<Message> messages = new List<Message>();
+            try
+            {
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    users = (Users)serializer.Deserialize(reader);
+
+                if (users.AllUsers.Select(x => x.Id == userIdTempData) != null)
+                    messages = users.AllUsers.Where(n => n.Id == userIdTempData).Single().Messages;
+            }
+            catch (Exception ex) {  /*Create method to track errors*/}
+            return messages;
+        }
+
+        public List<Message> GetAllMessages()
+        {
+            Users users = null;
+            List<Message> messages = new List<Message>();
+            try
+            {
+                var serializer = new XmlSerializer(typeof(Users));
+                if (File.Exists("./Messages.xml")) {
+                    using (var reader = XmlReader.Create("Messages.xml"))
+                        users = (Users)serializer.Deserialize(reader);
+                   foreach(var u in users.AllUsers)
+                        foreach (var m in u.Messages)
+                            messages.Add(m);
+                } else { messages = null; }
+            }
+            catch (Exception ex) {  /*Create method to track errors*/}
+            return messages;
+        }
+        private int CreateNewUserID()
+        {
+            Users users = null;
+            try
+            {
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    users = (Users)serializer.Deserialize(reader);
+                return users.AllUsers.Max(u => u.Id);
+                
+            }
+            catch (Exception ex)
+            {
+                return 0;
             }
         }
 

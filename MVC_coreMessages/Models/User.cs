@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 
 namespace MVC_coreMessages.Models
 {
+    
     public class User
     {
         [XmlAttribute]

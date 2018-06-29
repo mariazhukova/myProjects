@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace MVC_coreMessages.Servises
 {
@@ -38,13 +40,24 @@ namespace MVC_coreMessages.Servises
 
         private void AddUser()
         {
-            var items = from xel in xDocument.Element("AllUsers").Elements("User")
-                        select new User { Id = Int32.Parse(xel.Attribute("Id").Value) };
-            maxId = items.Max(x => x.Id);
-           
-            XElement root = xDocument.Element("AllUsers");
-            root.Add(new XElement("User", new XAttribute("Id", ++maxId)));
+            Users users = null;
             
+            try
+            {
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    users = (Users)serializer.Deserialize(reader);
+                maxId = users.AllUsers.Max(x => x.Id);
+                users.AllUsers.Add(new User { Id = maxId + 1, Messages = new List<Message>() { new Message { Id = 0, MessageBody = "" } } });
+
+                using (Stream output = File.OpenWrite("Messages.xml"))
+                    serializer.Serialize(output, users);
+            }
+            catch(Exception ex)
+            {
+
+            }
         }
        
     }

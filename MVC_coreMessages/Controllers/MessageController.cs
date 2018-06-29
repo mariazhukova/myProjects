@@ -11,46 +11,52 @@ namespace MVC_coreMessages.Controllers
 {
     public class MessageController : Controller
     {
-        ServiceMessage service = null;
-        ServiceUser serviceUseer = null;
-        User user = null;
-        public string GetMessages(int IdUser)
-        {
-            throw new NotImplementedException();
-        }
-      
+        ServiceMessage service = new ServiceMessage();
+       User user = null;
+
         public IActionResult SendMessage()
         {
-            Request.Query.Keys.Contains("MessageBody");
-
-            int res = 0;
-
-            if (user== null)
-            {
-                user = new User();
-                serviceUseer = new ServiceUser(ref user);
-                
-            }
-            else
-            {
-                Int32.TryParse(TempData["User"].ToString(), out res);
-                service = new ServiceMessage(res, "");
-            }
-           
             return View();
         }
 
-        public IActionResult sendtheMessage()
+        [HttpPost]
+        public JsonResult send(string message)
         {
-         
-            //Int32.TryParse(TempData["User"].ToString(), out res);
+            if (Request.Cookies["UserId"]==null)
+            {
+                int Id = service.sendMessage(message);
+                Response.Cookies.Append("UserId", Id.ToString());
+            }
+            else
+            {
+                int Id = 0;
+                Int32.TryParse(Request.Cookies["UserId"], out Id);
+                service.sendMessage(Id, message);
+            }
             
-            service = new ServiceMessage(0, "");
-            return View("ResultMessage");
+            return Json("Ok"); 
         }
 
+       public IActionResult GetMessages()
+        {
+            int UserId = 0;
+            Int32.TryParse(Request.Cookies["UserId"], out UserId);
+            IEnumerable<Message> messages = service.GetMessagesbyUserId(UserId);
+            return PartialView("_showMessages",messages);
+        }
 
+        public IActionResult GetAllMessages()
+        {
+            IEnumerable<Message> messages = service.GetAllMessages();
+            return PartialView("_showAllMessages", messages);
+        }
 
-
+        public IActionResult get()
+        {
+            int UserId = 0;
+            Int32.TryParse(Request.Cookies["UserId"], out UserId);
+            var messages = service.GetMessagesbyUserId(UserId);
+            return PartialView("_showMessages", messages);
+        }
     }
 }

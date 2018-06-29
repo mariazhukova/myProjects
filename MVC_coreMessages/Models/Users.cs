@@ -6,10 +6,8 @@ using System.Xml.Serialization;
 
 namespace MVC_coreMessages.Models
 {
-    [XmlRoot("Messages")]
-    public class Users
+   public class Users
     {
-        [XmlElement]
         public List<User> AllUsers { get; set; }
     }
 }
