@@ -12,8 +12,7 @@ namespace MVC_coreMessages.Controllers
     public class MessageController : Controller
     {
         ServiceMessage service = new ServiceMessage();
-       User user = null;
-
+      
         public IActionResult SendMessage()
         {
             return View();
@@ -31,7 +30,7 @@ namespace MVC_coreMessages.Controllers
             {
                 int Id = 0;
                 Int32.TryParse(Request.Cookies["UserId"], out Id);
-                service.sendMessage(Id, message);
+                service.sendMessage( message, Id);
             }
             
             return Json("Ok"); 
@@ -41,22 +40,15 @@ namespace MVC_coreMessages.Controllers
         {
             int UserId = 0;
             Int32.TryParse(Request.Cookies["UserId"], out UserId);
-            IEnumerable<Message> messages = service.GetMessagesbyUserId(UserId);
+            IEnumerable<Message> messages = service.GetMessages(UserId);
             return PartialView("_showMessages",messages);
         }
 
         public IActionResult GetAllMessages()
         {
-            IEnumerable<Message> messages = service.GetAllMessages();
+            Users messages = service.GetMessages();
             return PartialView("_showAllMessages", messages);
         }
 
-        public IActionResult get()
-        {
-            int UserId = 0;
-            Int32.TryParse(Request.Cookies["UserId"], out UserId);
-            var messages = service.GetMessagesbyUserId(UserId);
-            return PartialView("_showMessages", messages);
-        }
     }
 }

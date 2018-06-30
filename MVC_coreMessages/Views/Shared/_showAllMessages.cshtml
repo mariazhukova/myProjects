@@ -1,0 +1,17 @@
+﻿@model Users
+@*
+    
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<h4>All messages</h4>
+@foreach (var u in Model.AllUsers)
+{
+    <p><b>User: </b>@u.Id </p>
+    int counter = u.Messages.Count;
+    counter=(counter > 20) ? 20 : counter;
+    for (int i =0; i<counter;i++)
+    {
+       <p> <b>Message number: </b>@u.Messages[i].Id <b> Message:</b> @u.Messages[i].MessageBody</p>
+    }
+
+}

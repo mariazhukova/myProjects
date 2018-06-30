@@ -5,9 +5,8 @@
 }
 <h4>Your messages </h4>
 <text>
-    @foreach(var a in Model)
+     @foreach(var a in Model)
     {
-        <p>Number @a.Id</p>
-        <p>@a.MessageBody</p>
+    <p><b>Number @a.Id </b> @a.MessageBody</p>
      }
 </text>

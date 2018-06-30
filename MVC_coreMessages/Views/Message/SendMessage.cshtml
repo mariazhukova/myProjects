@@ -9,7 +9,8 @@
 <form>
     <input type="text" id="messageBody"/>
     <button id="sendMessage" >Send</button>
-    <button id="showMessages">Show</button>
+    <button id="showMessages">Show my messages</button>
+    <button id="showAllMessages">Show all messages</button>
     <div id="messages">
        </div>
 </form>
@@ -28,12 +29,14 @@
             success: function (response) {
                 //debugger
                 $("#messages").html(response);
-               
+                $('#messageBody').val() = '';
             },
             error: function (response) {
-                alert("Error " + response.responseText)
+                alert("Error " + response.responseText);
+                $('#messageBody').val() = '';
             }
         })
+        $('#messageBody').val() = '';
     })
     $('#sendMessage').click(
         function (evt) {
@@ -46,10 +49,30 @@
                 data: { message: mes } ,
                 cash:false,
                 dataType:JSON,  
-                success: function (response) { alert(response.responseText) },
-                failure: function (response) { alrt(response.responseText) },
-                error: function () { alert("Error") }
+                success: function (response) { alert(response.responseText); $('#messageBody').val() = ''; },
+                failure: function (response) { alrt(response.responseText); $('#messageBody').val() = ''; },
+                error: function () { alert("Error"); $('#messageBody').val() = ''; }
             })
+            $('#messageBody').val() = '';
         })
+    $("#showAllMessages").click(function (evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        $.ajax({
+            type: "post",
+            url: "/Message/GetAllMessages",
+            success: function (response) {
+                //debugger
+                $("#messages").html(response)
+                $('#messageBody').val() = '';
+
+            },
+            error: function (response) {
+                alert("Error " + response.responseText);
+                $('#messageBody').val() = '';
+            }
+        })
+        $('#messageBody').val() = '';
+    })
 </script>
 

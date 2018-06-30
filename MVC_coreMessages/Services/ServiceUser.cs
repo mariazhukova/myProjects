@@ -11,37 +11,47 @@ using System.Xml.Serialization;
 
 namespace MVC_coreMessages.Servises
 {
-    class ServiceUser:Service
+    class ServiceUser:Service,IServiceUser
     {
-        XDocument xDocument = null;
-        XElement users = null;
-        XElement user = null;
-        XAttribute attribute = null;
-        int maxId = 0;
-        public ServiceUser(ref User User)
+        public Users GetUsers()
         {
-            if (!File.Exists("./Messages.xml"))
+            Users users = null;
+            try
             {
-                //xDocument = new XDocument();
-                CreateFile(maxId);
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    return users = (Users)serializer.Deserialize(reader);
             }
-            else
+            catch(Exception ex)
             {
-                xDocument = XDocument.Load("./Messages.xml");
-                CreateNewUser(ref User);
+                return users = null;
             }
-            
-        }
-        private void CreateNewUser(ref User User)
-        {      
-            AddUser();
-            User.Id = maxId;
         }
 
+        public string AddMessageToUser(int userId,Message message)
+        {
+            Users users = null;
+            try
+            {
+                users = GetUsers();
+                users.AllUsers.Where(x => x.Id == userId).Single().Messages.Add(message);
+                var serializer = new XmlSerializer(typeof(Users));
+                // Serialize.
+                using (Stream outputStream = File.OpenWrite("Messages.xml"))
+                    serializer.Serialize(outputStream, users);
+                return "Ok";
+            }
+            catch(Exception ex)
+            {
+                return "Error: {0}" + ex.Message;
+            }
+           
+        }
         private void AddUser()
         {
             Users users = null;
-            
+            int maxId = 0;
             try
             {
                 var serializer = new XmlSerializer(typeof(Users));
@@ -59,6 +69,25 @@ namespace MVC_coreMessages.Servises
 
             }
         }
-       
+        public int CreateNewUserID()
+        {
+            Users users = null;
+            int newId = 0;
+            try
+            {
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    users = (Users)serializer.Deserialize(reader);
+                newId = (users.AllUsers.Max(u => u.Id)) + 1;
+
+                return newId;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
     }
 }
