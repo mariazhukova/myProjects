@@ -15,6 +15,7 @@ namespace Lambda
             var sortNumbersone = numbers.FindAll(predicate);
             var sortNumbers = numbers.FindAll(new Predicate<int>(Sort));
             var sortNumbersLambda = numbers.FindAll(i => i % 2 == 0);
+            var sortNumbersLambda1 = numbers.Where(i => i % 2 == 0).Sum(i=>(long)i);
             foreach (int el in sortNumbersone) Console.WriteLine("elsement {0}", el);
             foreach (int el in sortNumbers) Console.WriteLine("elsement {0}", el);
             foreach (int el in sortNumbersLambda) Console.WriteLine("elsement {0}", el);
