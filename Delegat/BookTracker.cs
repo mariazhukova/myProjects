@@ -26,8 +26,6 @@ namespace Delegat
         {
             this.Name = name;
             bookTracker.AddBook(Name, delegate (int i){ i++; });
-            
-            
         }
 
 

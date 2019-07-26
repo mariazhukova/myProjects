@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ namespace MVC_coreMessages
     {
         public static void Main(string[] args)
         {
+            var n = Clipboard.GetText(TextDataFormat.Text)
             BuildWebHost(args).Run();
         }
 

@@ -48,23 +48,26 @@ namespace MVC_coreMessages.Servises
             }
            
         }
-        private void AddUser()
+        private async Task AddUser()
         {
             Users users = null;
             int maxId = 0;
             try
             {
-                var serializer = new XmlSerializer(typeof(Users));
+                await Task.Run(() =>
+                {
+                    var serializer = new XmlSerializer(typeof(Users));
 
-                using (var reader = XmlReader.Create("Messages.xml"))
-                    users = (Users)serializer.Deserialize(reader);
-                maxId = users.AllUsers.Max(x => x.Id);
-                users.AllUsers.Add(new User { Id = maxId + 1, Messages = new List<Message>() { new Message { Id = 0, MessageBody = "" } } });
+                    using (var reader = XmlReader.Create("Messages.xml"))
+                        users = (Users)serializer.Deserialize(reader);
+                    maxId = users.AllUsers.Max(x => x.Id);
+                    users.AllUsers.Add(new User { Id = maxId + 1, Messages = new List<Message>() { new Message { Id = 0, MessageBody = "" } } });
 
-                using (Stream output = File.OpenWrite("Messages.xml"))
-                    serializer.Serialize(output, users);
+                    using (Stream output = File.OpenWrite("Messages.xml"))
+                        serializer.Serialize(output, users);
+                });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
 
             }

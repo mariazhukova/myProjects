@@ -7,12 +7,28 @@
 <h2>Send a message</h2>
 <h3>Enter your message below</h3>
 <form>
-    <input type="text" id="messageBody"/>
-    <button id="sendMessage" >Send</button>
+    <input type="text" id="messageBody" />
+    <button id="sendMessage">Send</button>
     <button id="showMessages">Show my messages</button>
     <button id="showAllMessages">Show all messages</button>
     <div id="messages">
-       </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                  </div>
+               <div  class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+            </div>
+        </div>
+    </div>
 </form>
 
 
@@ -27,16 +43,18 @@
             type: "post",
             url: "/Message/GetMessages",
             success: function (response) {
-                //debugger
-                $("#messages").html(response);
-                $('#messageBody').val() = '';
+                debugger
+                $(".modal-body").html(response);
+                $('#myModal').modal({ backdrop: "static" });
+               $('.modal-body').scrollspy({ target: '.navbar-example' });
+               // $('#messageBody').val() = '';
             },
             error: function (response) {
                 alert("Error " + response.responseText);
                 $('#messageBody').val() = '';
             }
         })
-        $('#messageBody').val() = '';
+       // $('#messageBody').val() = '';
     })
     $('#sendMessage').click(
         function (evt) {
@@ -62,9 +80,11 @@
             type: "post",
             url: "/Message/GetAllMessages",
             success: function (response) {
-                //debugger
-                $("#messages").html(response)
-                $('#messageBody').val() = '';
+                debugger
+                $(".modal-body").html(response);
+                $('#myModal').modal({ backdrop: "static" });
+                $('.modal-body').scrollspy({ target: '.modal-body' });
+               // $('#messageBody').val() = '';
 
             },
             error: function (response) {
@@ -72,7 +92,7 @@
                 $('#messageBody').val() = '';
             }
         })
-        $('#messageBody').val() = '';
+        //$('#messageBody').val() = '';
     })
 </script>
 

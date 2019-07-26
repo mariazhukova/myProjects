@@ -47,7 +47,7 @@ namespace Async_await
         static Task<int> ResultOfCycle()
         {
             int sum = 0;
-
+            
             return Task.Run(() =>
             {
                 for (int i = 0; i < 1000000000; i++)
