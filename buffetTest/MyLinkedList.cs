@@ -25,11 +25,12 @@ namespace buffetTest
         public void Append(string value)
         {
             var newelement = new LinkedListElement() { Value = value, Pointer = null };
-            this._head.Pointer = newelement;
+            var last = GetLast(this._head);
+            last.Pointer = newelement;
             this._tail = newelement;
             Lenght++;
         }
-
+        
         public void Prepend(string value)
         {
             var newelement = new LinkedListElement()
@@ -85,7 +86,34 @@ namespace buffetTest
                 nextEl = (LinkedListElement)nextEl.Pointer;
             }
             previusEl.Pointer = (LinkedListElement)nextEl.Pointer;
-            Lenght++;
+            Lenght--;
+        }
+
+        public void Reverse()
+        {
+            var newhead = new LinkedListElement() { Value = this._head.Value, Pointer = this._head.Pointer };
+            var newtail = new LinkedListElement() { Value = this._tail.Value, Pointer = this._tail.Pointer };
+            //create code here
+
+        }
+
+        private LinkedListElement GetLinkedElement(LinkedListElement linkedListel)
+        {
+            var element = this._head;
+            var elementPointer = (LinkedListElement)element.Pointer;
+            while (linkedListel.Value != elementPointer.Value)
+            {
+                element = (LinkedListElement)element.Pointer;
+                elementPointer = (LinkedListElement)element.Pointer;
+            }
+            return element;
+        }
+
+        private LinkedListElement GetLast(LinkedListElement elements)
+        { 
+            while (elements.Pointer != null)
+                elements = (LinkedListElement)elements.Pointer;
+            return elements;
         }
     }
     public class LinkedListElement

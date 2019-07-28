@@ -51,7 +51,10 @@
   <ItemGroup>
     <Compile Include="GoogleQuestions.cs" />
     <Compile Include="HashTable.cs" />
+    <Compile Include="MyDoublyLinkedList.cs" />
     <Compile Include="MyLinkedList.cs" />
+    <Compile Include="MyStack.cs" />
+    <Compile Include="MyStackBasedArray.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ArraysAlgoritms.cs" />
