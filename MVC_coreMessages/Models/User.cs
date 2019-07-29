@@ -6,11 +6,12 @@ using System.Xml.Serialization;
 
 namespace MVC_coreMessages.Models
 {
+    
     public class User
     {
         [XmlAttribute]
         public int Id { get; set; }
         [XmlElement]
-        public IEnumerable<Message> Messages {get;set;}
+        public List<Message> Messages {get;set;}
     }
 }

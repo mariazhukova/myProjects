@@ -8,7 +8,10 @@ namespace MVC_coreMessages.Servises
 {
     interface IServiceUser
     {
-        Models.User CreateNewUser(User User);
-        
+        Users GetUsers();
+        string AddMessageToUser(int userId, Message message);
+        int CreateNewUserID();
+
+
     }
 }

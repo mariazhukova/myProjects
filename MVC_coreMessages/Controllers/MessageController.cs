@@ -3,38 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MVC_coreMessages.Models;
 using MVC_coreMessages.Services;
+using MVC_coreMessages.Servises;
 
 namespace MVC_coreMessages.Controllers
 {
-    public class MessageController : Controller,IMessage
+    public class MessageController : Controller
     {
-        ServiceMessage service = null;
-        public string GetMessages(int IdUser)
-        {
-            throw new NotImplementedException();
-        }
-
+        ServiceMessage service = new ServiceMessage();
+      
         public IActionResult SendMessage()
         {
-            string result = sendtheMessage("");
             return View();
         }
 
-        public string sendtheMessage(string message)
+        [HttpPost]
+        public JsonResult send(string message)
         {
-            int res = 0;
-
-            if (TempData["User"] == null)
+            if (Request.Cookies["UserId"]==null)
             {
-                RedirectToAction("CreateNewUser", "User");
+                int Id = service.sendMessage(message);
+                Response.Cookies.Append("UserId", Id.ToString());
             }
             else
             {
-                Int32.TryParse(TempData["User"].ToString(), out res);
-                service = new ServiceMessage(res, message);
+                int Id = 0;
+                Int32.TryParse(Request.Cookies["UserId"], out Id);
+                service.sendMessage( message, Id);
             }
-            return "Ok";
+            
+            return Json("Ok"); 
         }
+
+       public IActionResult GetMessages()
+        {
+            int UserId = 0;
+            Int32.TryParse(Request.Cookies["UserId"], out UserId);
+            IEnumerable<Message> messages = service.GetMessages(UserId);
+            return PartialView("_showMessages",messages);
+        }
+
+        public IActionResult GetAllMessages()
+        {
+            Users messages = service.GetMessages();
+            return PartialView("_showAllMessages", messages);
+        }
+
     }
 }

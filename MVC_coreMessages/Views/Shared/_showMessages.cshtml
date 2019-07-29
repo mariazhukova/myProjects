@@ -1,0 +1,12 @@
+﻿@model IEnumerable<MVC_coreMessages.Models.Message>
+@{
+    ViewData["Title"] = "Messages";
+    //int i = 0;
+}
+<h4>Your messages </h4>
+<text>
+     @foreach(var a in Model)
+    {
+    <p><b>Number @a.Id </b> @a.MessageBody</p>
+     }
+</text>

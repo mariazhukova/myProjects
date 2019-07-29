@@ -57,9 +57,13 @@ namespace Delegat
             Book book = new Book("1");
             book.Add("2");
             book.Add("3");
-            
-        }
+            ExampleAccount account = new ExampleAccount(100);
+            account.Added += Console.WriteLine;
+            account.Withdrawn += Console.WriteLine;
+            account.Put(200);
+            account.Withdraw(220);
 
+        }
 
     }
 }

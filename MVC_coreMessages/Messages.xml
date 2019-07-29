@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<Users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AllUsers>
+    <User Id="0">
+      <Messages Id="0">
+        <MessageBody>newmessage</MessageBody>
+      </Messages>
+      <Messages Id="1">
+        <MessageBody>message</MessageBody>
+      </Messages>
+      <Messages Id="2">
+        <MessageBody>oooooooopopoppppppppp</MessageBody>
+      </Messages>
+      <Messages Id="3">
+        <MessageBody>oooooooopopoppppppppp</MessageBody>
+      </Messages>
+    </User>
+    <User Id="1">
+      <Messages Id="0">
+        <MessageBody>mmmmmm</MessageBody>
+      </Messages>
+    </User>
+    <User Id="2">
+      <Messages Id="0">
+        <MessageBody>south moravia 70, Voronezh, Russian Federation</MessageBody>
+      </Messages>
+    </User>
+    <User Id="3">
+      <Messages Id="0">
+        <MessageBody>mmmmmmmmmmmm</MessageBody>
+      </Messages>
+    </User>
+    <User Id="4">
+      <Messages Id="0">
+        <MessageBody>send a new message for new user</MessageBody>
+      </Messages>
+    </User>
+  </AllUsers>
+</Users>

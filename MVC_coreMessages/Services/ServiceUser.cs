@@ -5,47 +5,92 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace MVC_coreMessages.Servises
 {
-    class ServiceUser:Service
+    class ServiceUser:Service,IServiceUser
     {
-        XDocument xDocument = null;
-        XElement users = null;
-        XElement user = null;
-        XAttribute attribute = null;
-        int maxId = 0;
-        public ServiceUser(ref User User)
+        public Users GetUsers()
         {
-            if (!File.Exists("./Messages.xml"))
+            Users users = null;
+            try
             {
-                //xDocument = new XDocument();
-                CreateFile(maxId);
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    return users = (Users)serializer.Deserialize(reader);
             }
-            else
+            catch(Exception ex)
             {
-                xDocument = XDocument.Load("./Messages.xml");
-                CreateNewUser(ref User);
+                return users = null;
             }
-            
-        }
-        private void CreateNewUser(ref User User)
-        {      
-            AddUser();
-            User.Id = maxId;
         }
 
-        private void AddUser()
+        public string AddMessageToUser(int userId,Message message)
         {
-            var items = from xel in xDocument.Element("AllUsers").Elements("User")
-                        select new User { Id = Int32.Parse(xel.Attribute("Id").Value) };
-            maxId = items.Max(x => x.Id);
+            Users users = null;
+            try
+            {
+                users = GetUsers();
+                users.AllUsers.Where(x => x.Id == userId).Single().Messages.Add(message);
+                var serializer = new XmlSerializer(typeof(Users));
+                // Serialize.
+                using (Stream outputStream = File.OpenWrite("Messages.xml"))
+                    serializer.Serialize(outputStream, users);
+                return "Ok";
+            }
+            catch(Exception ex)
+            {
+                return "Error: {0}" + ex.Message;
+            }
            
-            XElement root = xDocument.Element("AllUsers");
-            root.Add(new XElement("User", new XAttribute("Id", ++maxId)));
-            
         }
-       
+        private async Task AddUser()
+        {
+            Users users = null;
+            int maxId = 0;
+            try
+            {
+                await Task.Run(() =>
+                {
+                    var serializer = new XmlSerializer(typeof(Users));
+
+                    using (var reader = XmlReader.Create("Messages.xml"))
+                        users = (Users)serializer.Deserialize(reader);
+                    maxId = users.AllUsers.Max(x => x.Id);
+                    users.AllUsers.Add(new User { Id = maxId + 1, Messages = new List<Message>() { new Message { Id = 0, MessageBody = "" } } });
+
+                    using (Stream output = File.OpenWrite("Messages.xml"))
+                        serializer.Serialize(output, users);
+                });
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+        public int CreateNewUserID()
+        {
+            Users users = null;
+            int newId = 0;
+            try
+            {
+                var serializer = new XmlSerializer(typeof(Users));
+
+                using (var reader = XmlReader.Create("Messages.xml"))
+                    users = (Users)serializer.Deserialize(reader);
+                newId = (users.AllUsers.Max(u => u.Id)) + 1;
+
+                return newId;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
     }
 }

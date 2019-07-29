@@ -1,12 +1,98 @@
 ﻿@model MVC_coreMessages.Models.Message
 @{
     ViewData["Title"] = "SendMessage";
+
 }
 
 <h2>Send a message</h2>
 <h3>Enter your message below</h3>
-<form asp-controller="Message" asp-action="sendtheMessage" method="post" id="messageBody">
-    Message:  <input asp-for="MessageBody" /> <br />
-   <button id="sendMessageClick" type="submit" onclick="location.href='@Url.Action("sendtheMessage", "Message")?id=' + document.getElementById('messageBody').value">Send</button>
+<form>
+    <input type="text" id="messageBody" />
+    <button id="sendMessage">Send</button>
+    <button id="showMessages">Show my messages</button>
+    <button id="showAllMessages">Show all messages</button>
+    <div id="messages">
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                  </div>
+               <div  class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+            </div>
+        </div>
+    </div>
 </form>
+
+
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script type="text/jscript">
+
+    $("#showMessages").click(function (evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        $.ajax({
+            type: "post",
+            url: "/Message/GetMessages",
+            success: function (response) {
+                debugger
+                $(".modal-body").html(response);
+                $('#myModal').modal({ backdrop: "static" });
+               $('.modal-body').scrollspy({ target: '.navbar-example' });
+               // $('#messageBody').val() = '';
+            },
+            error: function (response) {
+                alert("Error " + response.responseText);
+                $('#messageBody').val() = '';
+            }
+        })
+       // $('#messageBody').val() = '';
+    })
+    $('#sendMessage').click(
+        function (evt) {
+            evt.preventDefault();
+            debugger
+            var mes = $('#messageBody').val();
+            $.ajax({
+                type: "POST",
+                url: "/Message/send",
+                data: { message: mes } ,
+                cash:false,
+                dataType:JSON,  
+                success: function (response) { alert(response.responseText); $('#messageBody').val() = ''; },
+                failure: function (response) { alrt(response.responseText); $('#messageBody').val() = ''; },
+                error: function () { alert("Error"); $('#messageBody').val() = ''; }
+            })
+            $('#messageBody').val() = '';
+        })
+    $("#showAllMessages").click(function (evt) {
+        evt.preventDefault();
+        evt.stopPropagation();
+        $.ajax({
+            type: "post",
+            url: "/Message/GetAllMessages",
+            success: function (response) {
+                debugger
+                $(".modal-body").html(response);
+                $('#myModal').modal({ backdrop: "static" });
+                $('.modal-body').scrollspy({ target: '.modal-body' });
+               // $('#messageBody').val() = '';
+
+            },
+            error: function (response) {
+                alert("Error " + response.responseText);
+                $('#messageBody').val() = '';
+            }
+        })
+        //$('#messageBody').val() = '';
+    })
+</script>
 
