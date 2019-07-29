@@ -25,19 +25,20 @@ namespace Algoritms
             myLinkedList.Append("second");
             myLinkedList.Append("third");
             myLinkedList.Prepend("zero");// myLinkedList.Reverse();
-            MyStack myStack = new MyStack();
-            myStack.push(1);
-            myStack.push(2);
-            myStack.push(3);
-            int res= myStack.peek();
-            int r = myStack.pop();
-            MyStackBasedArray myStackBasedArray = new MyStackBasedArray();
-            myStackBasedArray.push(1);
-            myStackBasedArray.push(2);
-            myStackBasedArray.push(3);
-            myStackBasedArray.pop();
-            myStackBasedArray.pop();
-            myStackBasedArray.peek();
+            MyQueue myQueue = new MyQueue();
+            myQueue.enqueue(1);
+            myQueue.enqueue(2);
+            myQueue.enqueue(3);
+            myQueue.enqueue(4);
+            myQueue.dequeue();
+            myQueue.peek();
+            myQueue.dequeue();
+            myQueue.dequeue();
+            myQueue.dequeue();
+            myQueue.dequeue();
+            myQueue.peek();
+
+
             Console.WriteLine(result);
  
             Console.ReadKey();

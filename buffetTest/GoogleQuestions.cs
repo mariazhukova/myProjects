@@ -117,6 +117,12 @@ namespace buffetTest
             }
             return result;
         }
+
+        public void metod()
+        {
+            Stack<int> stack = new Stack<int>();
+            
+        }
     }
 }
 
