@@ -25,18 +25,18 @@ namespace Algoritms
             myLinkedList.Append("second");
             myLinkedList.Append("third");
             myLinkedList.Prepend("zero");// myLinkedList.Reverse();
-            MyQueue myQueue = new MyQueue();
-            myQueue.enqueue(1);
-            myQueue.enqueue(2);
-            myQueue.enqueue(3);
-            myQueue.enqueue(4);
-            myQueue.dequeue();
-            myQueue.peek();
-            myQueue.dequeue();
-            myQueue.dequeue();
-            myQueue.dequeue();
-            myQueue.dequeue();
-            myQueue.peek();
+            BinarySearchTree binarySearchTree = new BinarySearchTree();
+            binarySearchTree.Insert(9);
+            binarySearchTree.Insert(4);
+            binarySearchTree.Insert(6);
+            binarySearchTree.Insert(20);
+            binarySearchTree.Insert(170);
+            binarySearchTree.Insert(15);
+            binarySearchTree.Insert(1);
+            binarySearchTree.Insert(14);
+            binarySearchTree.Insert(16);
+            binarySearchTree.Remove(20);
+
 
 
             Console.WriteLine(result);
