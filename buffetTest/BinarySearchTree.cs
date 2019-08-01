@@ -85,10 +85,59 @@ namespace Algoritms
                 while (curent.Right != null);
 
             deliting.Value = curent.Value;
-            if (curent .Left == null)
-                temp.Right = null;
+                if (curent.Value == temp.Value)
+                    deliting.Left = null;
+                else if (curent.Left == null)
+                    temp.Right = null;
+                else if(curent.Left != null)
+                    temp.Right = curent.Left;
+            }
+            else if ((BinarySearchTreeElement)deliting.Right != null)
+            {
+                curent = (BinarySearchTreeElement)deliting.Right;
+
+                do
+                {
+                    temp = curent;
+                    if (curent.Left != null)
+                        curent = (BinarySearchTreeElement)curent.Left;
+
+                }
+                while (curent.Left != null);
+
+                deliting.Value = curent.Value;
+                if (curent.Value == temp.Value)
+                    deliting.Right = null;
+                else if (curent.Right == null)
+                    temp.Left = null;
+                else if (curent.Right != null)
+                    temp.Left = curent.Right;
+            }
             else
-                temp.Left = null;
+            {
+                curent = root;
+                bool isLeft = false;
+                do
+                {
+                    temp = curent;
+                    if (deliting.Value > curent.Value)
+                    {
+                        curent = (BinarySearchTreeElement)curent.Right;
+                        isLeft = false;
+                    }
+                    else
+                    {
+                        curent = (BinarySearchTreeElement)curent.Left;
+                        isLeft = true;
+                    }
+                        
+                } while (curent.Value != deliting.Value);
+
+                if (isLeft)
+                    temp.Left = null;
+                else
+                    temp.Right = null;
+
             }
          
         }

@@ -36,6 +36,7 @@ namespace Algoritms
             binarySearchTree.Insert(14);
             binarySearchTree.Insert(16);
             binarySearchTree.Remove(20);
+            binarySearchTree.Remove(170);
 
 
 
