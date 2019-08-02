@@ -53,6 +53,7 @@
     <Compile Include="GoogleQuestions.cs" />
     <Compile Include="HashTable.cs" />
     <Compile Include="MyDoublyLinkedList.cs" />
+    <Compile Include="MyGraph.cs" />
     <Compile Include="MyLinkedList.cs" />
     <Compile Include="MyQueue.cs" />
     <Compile Include="MyStack.cs" />
