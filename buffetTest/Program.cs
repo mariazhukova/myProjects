@@ -26,31 +26,8 @@ namespace Algoritms
             myLinkedList.Append("third");
             myLinkedList.Prepend("zero");// myLinkedList.Reverse();
 
-            MyGraph graph = new MyGraph();
-            graph.addNode(0);
-            graph.addNode(1);
-                graph.addNode(2) ;
-                graph.addNode(3) ;
-                graph.addNode(4) ;
-                graph.addNode(5) ;
-            graph.addNode(6);
-            graph.addEdge(0, 1);
-            graph.addEdge(0, 2);
-            graph.addEdge(3, 1);
-            graph.addEdge(3, 4);
-            graph.addEdge(4, 2);
-            graph.addEdge(4, 5);
-            graph.addEdge(1, 2);
-            graph.addEdge(6, 5);
-            var list = graph.ShowConnections();
-           foreach(var l in list)
-            {
-                Console.WriteLine(l);
-            }
-
-
-
-
+            Recursion rec = new Recursion();
+           var n= rec.reverseString("Hello");
             Console.WriteLine(result);
  
             Console.ReadKey();
