@@ -16,19 +16,16 @@ namespace Algoritms
         static void Main()
         {
             //[0,3,4,31] [4,6,30]
-            int[] array = { 0, 3, 4, 31, 56 };
-            int[] array2 = { 4, 6, 30,40 };
-            int[] array3 = { 1, 2, 2, 3, 4, 1, 5};
-            GoogleQuestions gq = new GoogleQuestions();
-            var result = gq.GetFirstDublicateNested(array3);
+            int[] array = { 0, 3, 8, 2, 5 };
+            int[] array2 = { 8, 6, 3,4,1,9 };
             MyLinkedList myLinkedList = new MyLinkedList("first");
             myLinkedList.Append("second");
             myLinkedList.Append("third");
             myLinkedList.Prepend("zero");// myLinkedList.Reverse();
 
             Recursion rec = new Recursion();
-           var n= rec.reverseString("Hello");
-            Console.WriteLine(result);
+            Sorting sorting = new Sorting();
+            sorting.bubleSort(array);
  
             Console.ReadKey();
         }

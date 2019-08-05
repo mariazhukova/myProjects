@@ -71,7 +71,6 @@ namespace buffetTest
         {
             if (str.Length == 0)
                 return  str;
-            //Console.Write(str[str.Length-1]);
             return reverseString(str.Substring(1))+str[0];
         }
         public int FibonachiIterative(int index)
