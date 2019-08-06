@@ -10,28 +10,41 @@ namespace buffetTest
     {
         public int[] bubleSort(int[] array)
         {
-            for(int i=0; i < array.Length;)
+            for(int i=0; i < array.Length-1;i++)
             {
-                int temp = 0;
-                if (array[i] > array[i + 1])
+                for(int j=0; j<array.Length-1;j++)
                 {
-                    temp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = temp;
-                    i = (i + 1 < array.Length - 1) ? i++:i ;
+                    if (array[j] > array[j + 1])
+                    {
+                        int temp = array[j];
+                        array[j] = array[j + 1];
+                        array[j + 1] = temp;
+                    }
                 }
-                else if (array[i] < array[i + 1] && i!= 0 && i + 1 < array.Length - 1)
-                {
-                    i--;
-                }
-                else if (array[i] < array[i + 1] && i+1 < array.Length-1)
-                {
-                    i++;
-                }
-                else break;
             }
             return array;
         }
-
+        public int[] selectionSort(int[] array)
+        {
+                int min = 0;
+            int index = 0;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    min = array[i];
+                    index = i;
+                    for (int j = i; j < array.Length; j++)
+                    {
+                        if (array[j] < min)
+                        {
+                             min = array[j];
+                            index = j;
+                        }
+                    }
+                array[index] = array[i];
+                array[i] = min;
+               
+                }
+                return array;
+        }
     }
 }

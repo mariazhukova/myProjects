@@ -25,7 +25,7 @@ namespace Algoritms
 
             Recursion rec = new Recursion();
             Sorting sorting = new Sorting();
-            sorting.bubleSort(array);
+            sorting.selectionSort(array2);
  
             Console.ReadKey();
         }
