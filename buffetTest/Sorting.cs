@@ -24,27 +24,47 @@ namespace buffetTest
             }
             return array;
         }
+        public int[] insertionSort(int[] array)
+        {
+            int last = 0;
+            for (int i = 0; i < array.Length;++i)
+            {
+                last = array[i];
+                for (int j = i; j >= 0; j--)
+                 {
+                    if (last < array[j])
+                    {
+                        array[j+1] = array[j];
+                        array[j] = last;
+                    }
+                    
+                }
+                
+            }
+                return array;
+        }
+
         public int[] selectionSort(int[] array)
         {
-                int min = 0;
+            int min = 0;
             int index = 0;
-                for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < array.Length; i++)
+            {
+                min = array[i];
+                index = i;
+                for (int j = i; j < array.Length; j++)
                 {
-                    min = array[i];
-                    index = i;
-                    for (int j = i; j < array.Length; j++)
+                    if (array[j] < min)
                     {
-                        if (array[j] < min)
-                        {
-                             min = array[j];
-                            index = j;
-                        }
+                        min = array[j];
+                        index = j;
                     }
+                }
                 array[index] = array[i];
                 array[i] = min;
-               
-                }
-                return array;
+
+            }
+            return array;
         }
     }
 }
