@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearchTree.cs" />
+    <Compile Include="Extensions\SortingExtensions.cs" />
     <Compile Include="GoogleQuestions.cs" />
     <Compile Include="HashTable.cs" />
     <Compile Include="MyDoublyLinkedList.cs" />
