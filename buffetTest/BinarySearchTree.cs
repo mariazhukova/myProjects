@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algoritms.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,20 @@ namespace Algoritms
 {
     class BinarySearchTree
     {
-        private BinarySearchTreeElement root { get; set; }
-
+        private BinarySearchNode root { get; set; }
+        private int Length { get; set; }
         public BinarySearchTree()
         {
             root = null;
         }
         public void Insert(int value)
         {
-            var newelement = new BinarySearchTreeElement() { Value = value, Left = null, Right = null };
+            var newelement = new BinarySearchNode() { Value = value, Left = null, Right = null };
             if (root == null)
                 root = newelement;
             else
             {
-                var curent = new BinarySearchTreeElement();
+                var curent = new BinarySearchNode();
                 curent = root;
                 while (true)
                 {
@@ -36,28 +37,29 @@ namespace Algoritms
                         break;
                     }
                     else if (newelement.Value > curent.Value)
-                        curent = (BinarySearchTreeElement)curent.Right;
+                        curent = (BinarySearchNode)curent.Right;
                     else if (newelement.Value < curent.Value)
-                        curent = (BinarySearchTreeElement)curent.Left;
+                        curent = (BinarySearchNode)curent.Left;
                         
                 }
             }
+            Length++;
         }
 
-        public BinarySearchTreeElement Lookup(int value)
+        public BinarySearchNode Lookup(int value)
         {
             if (root == null)
                 return null;
             else
             {
-                var curent = new BinarySearchTreeElement();
+                var curent = new BinarySearchNode();
                 curent = root;
                 while (curent != null)
                 {
                     if (value > curent.Value)
-                       curent = (BinarySearchTreeElement)curent.Right;
+                       curent = (BinarySearchNode)curent.Right;
                     else if (value < curent.Value)
-                       curent = (BinarySearchTreeElement)curent.Left;
+                       curent = (BinarySearchNode)curent.Left;
                     else if (value == curent.Value)
                         return curent;
                 }
@@ -68,18 +70,18 @@ namespace Algoritms
         public void Remove(int value)
         {
             var deliting = Lookup(value);
-            var curent = new BinarySearchTreeElement();
-            var temp = new BinarySearchTreeElement();
+            var curent = new BinarySearchNode();
+            var temp = new BinarySearchNode();
 
-            if ((BinarySearchTreeElement)deliting.Left != null)
+            if ((BinarySearchNode)deliting.Left != null)
             {
-                curent = (BinarySearchTreeElement)deliting.Left;
+                curent = (BinarySearchNode)deliting.Left;
                 
                 do
                 {
                     temp = curent;
                     if (curent.Right != null)
-                        curent = (BinarySearchTreeElement)curent.Right;
+                        curent = (BinarySearchNode)curent.Right;
 
                 }
                 while (curent.Right != null);
@@ -92,15 +94,15 @@ namespace Algoritms
                 else if(curent.Left != null)
                     temp.Right = curent.Left;
             }
-            else if ((BinarySearchTreeElement)deliting.Right != null)
+            else if ((BinarySearchNode)deliting.Right != null)
             {
-                curent = (BinarySearchTreeElement)deliting.Right;
+                curent = (BinarySearchNode)deliting.Right;
 
                 do
                 {
                     temp = curent;
                     if (curent.Left != null)
-                        curent = (BinarySearchTreeElement)curent.Left;
+                        curent = (BinarySearchNode)curent.Left;
 
                 }
                 while (curent.Left != null);
@@ -122,12 +124,12 @@ namespace Algoritms
                     temp = curent;
                     if (deliting.Value > curent.Value)
                     {
-                        curent = (BinarySearchTreeElement)curent.Right;
+                        curent = (BinarySearchNode)curent.Right;
                         isLeft = false;
                     }
                     else
                     {
-                        curent = (BinarySearchTreeElement)curent.Left;
+                        curent = (BinarySearchNode)curent.Left;
                         isLeft = true;
                     }
                         
@@ -141,8 +143,34 @@ namespace Algoritms
             }
          
         }
+
+        public List<int> BreadthFirstSearch()
+        {
+            List<int> resultList = new List<int>();
+            var localroot = root;
+            int count = Length;
+            Queue<BinarySearchNode> queue = new Queue<BinarySearchNode>();
+            queue.Enqueue(root);
+            while(count>0)
+            {
+                localroot = queue.Dequeue();
+                resultList.Add(localroot.Value);
+                
+                if (localroot.Left != null)
+                {
+                    queue.Enqueue((BinarySearchNode)localroot.Left);
+                }
+                if (localroot.Right != null)
+                {
+                    queue.Enqueue((BinarySearchNode)localroot.Right);
+                }
+                count--;
+            }
+            return resultList;
+
+        }
     }
-    public class BinarySearchTreeElement
+    public class BinarySearchNode
     {
         public int Value { get; set; }
         public object Left { get; set; }

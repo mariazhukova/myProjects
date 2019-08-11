@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Algoritms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace buffetTest.Extensions
+namespace Algoritms.Extensions
 {
     public static class SortingExtensions
     {
@@ -34,6 +35,11 @@ namespace buffetTest.Extensions
             var arraylocal = arr.ToList();
             arraylocal.Insert(0, element);
             arr = arraylocal.ToArray();
+        }
+
+        public static int shift(this BinarySearchNode array)
+        {
+            return array.Value;
         }
     }
 }
