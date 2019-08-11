@@ -72,5 +72,9 @@
   <ItemGroup>
     <Folder Include="System\Windows\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SearchingQuestions.txt" />
+    <Content Include="SortingQuestions.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -170,7 +170,7 @@ namespace buffetTest
             return marker;
         }
 
-        void quicksort(int[] array, int start, int end)
+        public void quicksort(int[] array, int start, int end)
         {
             if (start >= end)
             {
