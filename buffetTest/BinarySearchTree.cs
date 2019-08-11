@@ -169,6 +169,15 @@ namespace Algoritms
             return resultList;
 
         }
+
+        public List<int> BreadthFirstSearchRecursion(int count)
+        {
+            List<int> resultList = new List<int>();
+            if (count < 0)
+                return null;
+            return resultList;
+
+        }
     }
     public class BinarySearchNode
     {
