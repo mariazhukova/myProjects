@@ -9,8 +9,8 @@ namespace Algoritms
 {
     class BinarySearchTree
     {
-        private BinarySearchNode root { get; set; }
-        private int Length { get; set; }
+        public BinarySearchNode root { get; set; }
+        public int Length { get; set; }
         public BinarySearchTree()
         {
             root = null;
@@ -143,7 +143,7 @@ namespace Algoritms
             }
          
         }
-
+        //copypast
         public List<int> BreadthFirstSearch()
         {
             List<int> resultList = new List<int>();
@@ -151,6 +151,7 @@ namespace Algoritms
             int count = Length;
             Queue<BinarySearchNode> queue = new Queue<BinarySearchNode>();
             queue.Enqueue(root);
+           
             while(count>0)
             {
                 localroot = queue.Dequeue();
@@ -169,13 +170,23 @@ namespace Algoritms
             return resultList;
 
         }
-
-        public List<int> BreadthFirstSearchRecursion(int count)
+        //copypasta
+        public List<int> BreadthFirstSearchRecursion(Queue<BinarySearchNode> queue, List<int> list)
         {
-            List<int> resultList = new List<int>();
-            if (count < 0)
-                return null;
-            return resultList;
+            if (queue.Count==0)
+                return list;
+            var localroot = queue.Dequeue();
+            list.Add(localroot.Value);
+            if (localroot.Left != null)
+            {
+                queue.Enqueue((BinarySearchNode)localroot.Left);
+            }
+            if (localroot.Right != null)
+            {
+                queue.Enqueue((BinarySearchNode)localroot.Right);
+            }
+
+            return BreadthFirstSearchRecursion(queue,list);
 
         }
 
@@ -187,7 +198,7 @@ namespace Algoritms
 //  return tree;
 //}
 }
-    public class BinarySearchTreeElement
+    public class BinarySearchNode
     {
         public int Value { get; set; }
         public object Left { get; set; }

@@ -34,6 +34,10 @@ namespace Algoritms
             binarySearchTree.Insert(15);
             binarySearchTree.Insert(170);
             binarySearchTree.BreadthFirstSearch();
+            Queue<BinarySearchNode> binaries = new Queue<BinarySearchNode>();
+            binaries.Enqueue(binarySearchTree.root);
+            binarySearchTree.BreadthFirstSearchRecursion(binaries,new List<int>());
+
             Console.ReadKey();
         }
     
