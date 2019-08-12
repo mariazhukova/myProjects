@@ -25,8 +25,15 @@ namespace Algoritms
 
             Recursion rec = new Recursion();
             Sorting sorting = new Sorting();
-            sorting.insertionSort(array2);
- 
+            BinarySearchTree binarySearchTree = new BinarySearchTree();
+            binarySearchTree.Insert(9);
+            binarySearchTree.Insert(4);
+            binarySearchTree.Insert(6);
+            binarySearchTree.Insert(1);
+            binarySearchTree.Insert(20);
+            binarySearchTree.Insert(15);
+            binarySearchTree.Insert(170);
+            binarySearchTree.BreadthFirstSearch();
             Console.ReadKey();
         }
     

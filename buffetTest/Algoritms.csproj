@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearchTree.cs" />
+    <Compile Include="Extensions\SortingExtensions.cs" />
     <Compile Include="GoogleQuestions.cs" />
     <Compile Include="HashTable.cs" />
     <Compile Include="MyDoublyLinkedList.cs" />
@@ -70,6 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="System\Windows\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SearchingQuestions.txt" />
+    <Content Include="SortingQuestions.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
