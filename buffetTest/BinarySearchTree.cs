@@ -143,7 +143,7 @@ namespace Algoritms
             }
          
         }
-        //copypast
+#region copypast
         public List<int> BreadthFirstSearch()
         {
             List<int> resultList = new List<int>();
@@ -170,7 +170,7 @@ namespace Algoritms
             return resultList;
 
         }
-        //copypasta
+        
         public List<int> BreadthFirstSearchRecursion(Queue<BinarySearchNode> queue, List<int> list)
         {
             if (queue.Count==0)
@@ -190,14 +190,62 @@ namespace Algoritms
 
         }
 
-//        function traverse(node)
-//        {
-//            const tree = { value: node.value };
-//        tree.left = node.left === null ? null : traverse(node.left);
-//        tree.right = node.right === null ? null : traverse(node.right);
-//  return tree;
-//}
-}
+        public List<int> DFSPreOder()
+        {
+            var localNode = root;
+            return traversePreOder(root, new List<int>());
+        }
+        public List<int> DFSInOder()
+        {
+            var localNode = root;
+            return traverseInOder(root, new List<int>());
+        }
+        public List<int> DFSPostOder()
+        {
+            var localNode = root;
+            return traversePostOder(root, new List<int>());
+        }
+        
+        private List<int> traversePreOder(BinarySearchNode node, List<int> list)
+        {
+            list.Add(node.Value);
+            if (node.Left != null)
+                traversePreOder((BinarySearchNode)node.Left,list);
+            if (node.Right != null)
+                traversePreOder((BinarySearchNode)node.Right, list);
+            return list;
+        }
+
+        private List<int> traverseInOder(BinarySearchNode node, List<int> list)
+        {
+            
+            if (node.Left != null)
+                traverseInOder((BinarySearchNode)node.Left, list);
+            list.Add(node.Value);
+            if (node.Right != null)
+                traverseInOder((BinarySearchNode)node.Right, list);
+            return list;
+        }
+
+        private List<int> traversePostOder(BinarySearchNode node, List<int> list)
+        {
+            if (node.Left != null)
+                traversePostOder((BinarySearchNode)node.Left, list);
+            
+            if (node.Right != null)
+                traversePostOder((BinarySearchNode)node.Right, list);
+            list.Add(node.Value);
+            return list;
+        }
+        #endregion
+        //        function traverse(node)
+        //        {
+        //            const tree = { value: node.value };
+        //        tree.left = node.left === null ? null : traverse(node.left);
+        //        tree.right = node.right === null ? null : traverse(node.right);
+        //  return tree;
+        //}
+    }
     public class BinarySearchNode
     {
         public int Value { get; set; }
