@@ -165,11 +165,10 @@ namespace buffetTest
         {
            bool result = true;
            var localroot = node;
-           int count = Length;
            Queue<BSTNode> queue = new Queue<BSTNode>();
            queue.Enqueue(node);
 
-          while (count > 0)
+          while (queue.Count > 0)
           {
               localroot = queue.Dequeue();
 
@@ -187,8 +186,6 @@ namespace buffetTest
                     else
                     { result = false; break; }
               }
-          
-              count--;
           }
           return result;
             
