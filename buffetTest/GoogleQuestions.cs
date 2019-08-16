@@ -117,11 +117,105 @@ namespace buffetTest
             }
             return result;
         }
+        
+    }
 
-        public void metod()
+    public class BSTNode
+    {
+        public int value { get; set; }
+        public object Left { get; set; }
+        public object Right { get; set; }
+    }
+
+    class BST
+    {
+        BSTNode node;
+        private int Length { get; set; }
+        public BST()
         {
-            Stack<int> stack = new Stack<int>();
+          //  node = new BSTNode();
+        }
+
+        public void Insert(int item)
+        {
             
+            if (node==null)
+                node = new BSTNode { Left = null, Right = null, value = item }; 
+            else
+            {
+                var tempNode = node;
+                var newelement = new BSTNode { Left = null, Right = null, value = item };
+                tempNode = traverse(item, tempNode);
+                if (tempNode.Left==null)
+                    tempNode.Left = newelement;
+                else tempNode.Right = newelement;
+            }
+            Length++;
+        }
+
+        /// <summary>
+        /// Given a binary tree, determine if it is a valid binary search tree (BST).
+        ///   2
+        ///  / \
+        /// 1   3
+        /// </summary>
+        /// input [2,1,3]
+        /// output true
+        public bool IsValidBST()
+        {
+           bool result = true;
+           var localroot = node;
+           int count = Length;
+           Queue<BSTNode> queue = new Queue<BSTNode>();
+           queue.Enqueue(node);
+
+          while (count > 0)
+          {
+              localroot = queue.Dequeue();
+
+              if (localroot.Left != null)
+              {
+                    if (localroot.value > ((BSTNode)localroot.Left).value)
+                        queue.Enqueue((BSTNode)localroot.Left);
+                    else
+                    { result = false; break; }
+                }
+             if (localroot.Right != null)
+              {
+                    if (localroot.value < ((BSTNode)localroot.Right).value)
+                        queue.Enqueue((BSTNode)localroot.Right);
+                    else
+                    { result = false; break; }
+              }
+          
+              count--;
+          }
+          return result;
+            
+        }
+
+        //private BSTNode traverse(int item, BSTNode bSTNode)
+        //{
+        //    if (bSTNode.Left == null || bSTNode.Right == null)
+        //        return bSTNode;
+
+        //    if (item > bSTNode.value && bSTNode.Right != null)
+        //        return traverse(item, (BSTNode)bSTNode.Right);
+        //    else if (item < bSTNode.value && bSTNode.Left != null)
+        //        return traverse(item, (BSTNode)bSTNode.Left);
+        //    else return traverse(item, bSTNode);
+        //}
+
+        private BSTNode traverse(int item, BSTNode bSTNode)
+        {
+            if (bSTNode.Left == null || bSTNode.Right == null)
+                return bSTNode;
+
+            if (bSTNode.Left != null)
+                return traverse(item, (BSTNode)bSTNode.Left);
+            else if (bSTNode.Right != null)
+                return traverse(item, (BSTNode)bSTNode.Right);
+            else return traverse(item, bSTNode);
         }
     }
 }
