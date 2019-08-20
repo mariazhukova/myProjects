@@ -51,14 +51,7 @@ namespace buffetTest
                 return number * FactorialRecursion(number - 1);
             return 1;
         }
-        public int FactorialIterative(int number)
-        {
-            int fac = number;
-            for(int i=number; i > 1; i--)
-                fac *= i - 1;
-            return fac;
-        }
-
+       
         public int FibonachiRecursion(int index)
         {
             if (index < 2) {
@@ -73,17 +66,7 @@ namespace buffetTest
                 return  str;
             return reverseString(str.Substring(1))+str[0];
         }
-        public int FibonachiIterative(int index)
-        {
-            int fib = 0;
-            int[] elements = new int[] {0,1};
-            for(int i=1; i < index; i++)
-            {
-                fib = elements[0] + elements[1];
-                elements[0] = elements[1];
-                elements[1] = fib;
-            }
-            return fib;
-        }
+       
+        
     }
 }
