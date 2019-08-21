@@ -10,6 +10,7 @@ namespace FactoryMethodPattern
     class Milk:MilkProduct
     {
         Task milk = new Task(()=> {
+            Console.WriteLine("Please wait!");
             Thread.Sleep(1000);
             Console.WriteLine("Milk is ready!");
         });

@@ -11,6 +11,7 @@ namespace FactoryMethodPattern
     {
 
         Task milk = new Task(() => {
+            Console.WriteLine("Please wait!");
             Thread.Sleep(2000);
             Console.WriteLine("Cheese is ready!");
         });
