@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BinarySearchTree.cs" />
     <Compile Include="DynamicProgramming.cs" />
+    <Compile Include="EasyQuestions.cs" />
     <Compile Include="Extensions\SortingExtensions.cs" />
     <Compile Include="GoogleQuestions.cs" />
     <Compile Include="HashTable.cs" />
