@@ -16,7 +16,6 @@ namespace buffetTest
         /// <param name="n"></param>
         /// <returns></returns>
         /// 
-
         public IList<string> FizzBuzz(int n)
         {
             return FizzBuzzIter(n).ToList();
@@ -37,7 +36,22 @@ namespace buffetTest
 
             }
            
+        }
 
+        /// <summary>
+        /// Given a non-empty array of integers, every element appears twice except for one. Find that single one.
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int SingleNumber(int[] nums)
+        {
+            List<int> numscopy = nums.ToList();
+            for(int i = 0; i < nums.Length - 1; i++)
+            {
+                if (numscopy.Count(e=>e==nums[i])>1)
+                    numscopy.RemoveAll(e=>e==nums[i]);
+            }
+            return numscopy.ElementAtOrDefault(0);
         }
     }
 }

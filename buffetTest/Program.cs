@@ -11,14 +11,14 @@ namespace Algoritms
 
     class MainClass
     {
-       
+
 
         static void Main()
         {
             //[0,3,4,31] [4,6,30]
             int[] array = { 1, 3, 8, 2, 5 };
-            int[] array2 = { 6,5,3,1,8,7,2,4 };
-            int[] sortedArray = { 1,4,5,8,12,34,41 };
+            int[] array2 = { 6, 5, 3, 1, 8, 7, 2, 4 };
+            int[] sortedArray = { 1, 4, 5, 8, 12, 34, 41 };
             MyLinkedList myLinkedList = new MyLinkedList("first");
             myLinkedList.Append("second");
             myLinkedList.Append("third");
@@ -48,8 +48,11 @@ namespace Algoritms
             dm.Rob(array);
             Tasks tasks = new Tasks();
             string str = "Hello! , , op , a Bob";
-            var nnn=tasks.RevertStringWithoutNewArray(str.ToCharArray());
+            var nnn = tasks.RevertStringWithoutNewArray(str.ToCharArray());
             Console.WriteLine(nnn.ToString());
+
+            EasyQuestions easyQuestions = new EasyQuestions();
+            easyQuestions.SingleNumber(new int[]{4, 1, 2, 1, 2});
 
             Console.ReadKey();
         }
