@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace buffetTest
+namespace Algoritms
 {
     public class GoogleQuestions
     {
@@ -190,18 +190,6 @@ namespace buffetTest
           return result;
             
         }
-
-        //private BSTNode traverse(int item, BSTNode bSTNode)
-        //{
-        //    if (bSTNode.Left == null || bSTNode.Right == null)
-        //        return bSTNode;
-
-        //    if (item > bSTNode.value && bSTNode.Right != null)
-        //        return traverse(item, (BSTNode)bSTNode.Right);
-        //    else if (item < bSTNode.value && bSTNode.Left != null)
-        //        return traverse(item, (BSTNode)bSTNode.Left);
-        //    else return traverse(item, bSTNode);
-        //}
 
         private BSTNode traverse(int item, BSTNode bSTNode)
         {

@@ -143,6 +143,16 @@ namespace Algoritms
             }
          
         }
+
+        public int GetDepth()
+        {
+            if(root!=null)
+            {
+                var localroot = root;
+                return DFSPreOrder(localroot, 1);
+            }
+            return 0;
+        }
 #region copypast
         public List<int> BreadthFirstSearch()
         {
@@ -237,6 +247,16 @@ namespace Algoritms
             list.Add(node.Value);
             return list;
         }
+
+        private int DFSPreOrder(BinarySearchNode node, int depth)
+        {
+            if (node.Left != null)
+                DFSPreOrder((BinarySearchNode)node.Left, depth++);
+            if (node.Right != null)
+                DFSPreOrder((BinarySearchNode)node.Right, depth++);
+            return depth;
+        }
+        // return root == null ? 0 : Math.Max(MaxDepth(root.left), MaxDepth(root.right)) + 1;
         #endregion
         //        function traverse(node)
         //        {
@@ -245,6 +265,8 @@ namespace Algoritms
         //        tree.right = node.right === null ? null : traverse(node.right);
         //  return tree;
         //}
+
+
     }
     public class BinarySearchNode
     {
