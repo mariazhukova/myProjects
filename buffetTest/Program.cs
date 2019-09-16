@@ -49,13 +49,13 @@ namespace Algoritms
 
             DynamicProgramming dm = new DynamicProgramming();
             dm.Rob(array);
-            Tasks tasks = new Tasks();
             string str = "Hello! , , op , a Bob";
-            var nnn = tasks.RevertStringWithoutNewArray(str.ToCharArray());
-            Console.WriteLine(nnn.ToString());
+           
 
             EasyQuestions easyQuestions = new EasyQuestions();
-            easyQuestions.SingleNumber(new int[]{4, 1, 2, 1, 2});
+            var nnn = easyQuestions.RevertStringWithoutNewArray(str.ToCharArray());
+            Console.WriteLine(nnn.ToString());
+            easyQuestions.SingleNumberwithXOR(new int[]{4, 1, 2, 1, 2});
 
             Console.ReadKey();
         }
