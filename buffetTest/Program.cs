@@ -20,13 +20,14 @@ namespace Algoritms
             int[] array2 = { 6, 5, 3, 1, 8, 7, 2, 4 };
             int[] sortedArray = { 1, 4, 5, 8, 12, 34, 41 };
             Sorting sorting1 = new Sorting();
-            sorting1.RedixSort(array);
             MyLinkedList myLinkedList = new MyLinkedList("first");
             myLinkedList.Append("second");
             myLinkedList.Append("third");
             myLinkedList.Prepend("zero");// myLinkedList.Reverse();
 
             Recursion rec = new Recursion();
+            int fib = rec.FibonachiRecursion(4);
+            int fac=rec.FactorialRecursion(4);
             Sorting sorting = new Sorting();
             BinarySearchTree binarySearchTree = new BinarySearchTree();
             binarySearchTree.Insert(9);

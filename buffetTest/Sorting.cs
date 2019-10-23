@@ -149,6 +149,18 @@ namespace buffetTest
             }
         }
         //copyPasta
+     
+        public void quicksort(int[] array, int start, int end)
+        {
+            if (start >= end)
+            {
+                return;
+            }
+            int pivot = partition(array, start, end);
+            quicksort(array, start, pivot - 1);
+            quicksort(array, pivot + 1, end);
+        }
+
         int partition(int[] array, int start, int end)
         {
             int temp;//swap helper
@@ -168,17 +180,6 @@ namespace buffetTest
             array[marker] = array[end];
             array[end] = temp;
             return marker;
-        }
-
-        public void quicksort(int[] array, int start, int end)
-        {
-            if (start >= end)
-            {
-                return;
-            }
-            int pivot = partition(array, start, end);
-            quicksort(array, start, pivot - 1);
-            quicksort(array, pivot + 1, end);
         }
 
         public int[] RedixSort(int[] arr)
